@@ -1,4 +1,4 @@
 #!/bin/sh
 
-yarn install --prefix ~/client/;
-yarn install --prefix ~/server/;
+yarn --cwd ./client/ install;
+yarn --cwd ./server/ install;

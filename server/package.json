@@ -21,7 +21,10 @@
     "apollo-datasource-rest": "^0.10.0",
     "apollo-server": "^2.21.0",
     "apollo-server-testing": "^2.21.0",
+    "aws-sdk": "^2.858.0",
+    "dotenv": "^8.2.0",
     "graphql": "^15.5.0",
+    "ismail": "^1.2.0",
     "sequelize": "^6.5.0",
     "sqlite3": "^5.0.2",
     "uuid": "^8.3.2"
