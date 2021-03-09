@@ -1,19 +1,14 @@
 const { ApolloServer } = require('apollo-server');
-const { createStore } = require('./utilis');
 const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
 
-const LaunchAPI = require('./datasources/launch');
-const UserAPI = require('./datasources/user');
-
-const store = createStore();
+const TodoAPI = require('./api');
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
   dataSources: () => ({
-    launchAPI: new LaunchAPI(),
-    userAPI: new UserAPI({ store }),
+    todoApi: new TodoAPI(),
   }),
 });
 
