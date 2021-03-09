@@ -1,10 +1,10 @@
 const { RESTDataSource } = require('apollo-datasource-rest');
 
-class TodoAPI extends RESTDataSource {
+class BlogAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = 'https://localhost:4000/api';
+    this.baseURL = 'https://jsonplaceholder.typicode.com';
   }
 }
 
-module.exports = TodoAPI;
+module.exports = BlogAPI;
