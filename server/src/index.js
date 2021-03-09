@@ -1,7 +1,6 @@
 const { ApolloServer } = require('apollo-server');
 const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
-
 const BlogAPI = require('./api');
 
 const server = new ApolloServer({
@@ -14,7 +13,7 @@ const server = new ApolloServer({
 
 server.listen().then(() => {
   console.log(`
-    Server is running!
+    Server is running
     Listening on port 4000
     Explore at https://studio.apollographql.com/dev
   `);

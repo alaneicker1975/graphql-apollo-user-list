@@ -1,4 +1,7 @@
 {
   "parser": "babel-eslint",
-  "extends": "atomikui"
+  "extends": "atomikui",
+  "rules": {
+    //"no-return-await": 0
+  }
 }
