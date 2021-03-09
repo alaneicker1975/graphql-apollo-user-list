@@ -13,6 +13,18 @@ class BlogAPI extends RESTDataSource {
   async getPost(id) {
     return this.get(`/posts/${id}`);
   }
+
+  async addPost(post) {
+    this.post('posts', post);
+  }
+
+  async updatePost(post) {
+    this.patch('posts', { id: post.id, post });
+  }
+
+  async deletePost(id) {
+    this.delete(`posts/${id}`);
+  }
 }
 
 module.exports = BlogAPI;
