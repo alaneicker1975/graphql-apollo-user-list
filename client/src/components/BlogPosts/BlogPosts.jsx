@@ -1,19 +1,32 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { List, ListItem, Button } from '@atomikui/core';
+import { List, ListItem, Button, Alert, Spinner } from '@atomikui/core';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import { GET_POSTS } from './queries';
+import { getPosts } from './queries';
 
 const BlogPosts = () => {
-  const { loading, error, data } = useQuery(GET_POSTS);
+  const { loading, error, data } = useQuery(getPosts());
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <Spinner
+        size="xlg"
+        theme="white"
+        themeVariant="light"
+        style={{
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 100,
+        }}
+      />
+    );
   }
 
   if (error) {
-    return <div>Error!</div>;
+    return <Alert theme="error">Error: Could not load posts</Alert>;
   }
 
   return (

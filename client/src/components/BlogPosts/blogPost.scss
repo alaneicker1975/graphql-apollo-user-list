@@ -11,6 +11,10 @@
       margin-left: rem(20);
     }
 
+    & > :first-child {
+      flex: 1;
+    }
+
     & > :last-child {
       min-width: rem(60);
     }
@@ -23,6 +27,7 @@
 
   &__button {
     align-items: center;
+    color: lighten($cyan-600, 5%) !important;
     display: flex;
     flex-direction: column;
     line-height: 1;
@@ -34,6 +39,10 @@
 
     & > svg {
       margin-bottom: rem(8);
+
+      & > path {
+        color: lighten($cyan-600, 5%) !important;
+      }
     }
   }
 }
