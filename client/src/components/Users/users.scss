@@ -1,0 +1,19 @@
+.user-card {
+  backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: rem(10);
+  margin-bottom: rem(16);
+  padding: rem(16);
+  text-align: center;
+
+  &__name {
+    font-weight: $font-medium;
+    font-size: rem(28);
+  }
+
+  &__avatar {
+    border-radius: 50%;
+    width: rem(85);
+    border: rem(4) solid rgba(255, 255, 255, 0.65);
+  }
+}

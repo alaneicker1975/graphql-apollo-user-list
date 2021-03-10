@@ -1,6 +1,6 @@
 import React from 'react';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
-import BlogPosts from './BlogPosts';
+import Users from './Users';
 import '@atomikui/core/dist/styles/main.min.css';
 
 const client = new ApolloClient({
@@ -12,7 +12,7 @@ const App = () => (
   <ApolloProvider client={client}>
     <div className="App">
       <main>
-        <BlogPosts />
+        <Users />
       </main>
     </div>
   </ApolloProvider>

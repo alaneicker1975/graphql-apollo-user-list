@@ -1,30 +1,30 @@
 const { RESTDataSource } = require('apollo-datasource-rest');
 
-class BlogAPI extends RESTDataSource {
+class UserAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = 'https://jsonplaceholder.typicode.com';
+    this.baseURL = 'https://reqres.in/api';
   }
 
-  async getPosts() {
-    return this.get('/posts');
+  async getUsers() {
+    return this.get('/users');
   }
 
-  async getPost(id) {
-    return this.get(`/posts/${id}`);
+  async getUser(id) {
+    return this.get(`/users/${id}`);
   }
 
-  async addPost(post) {
-    this.post('posts', post);
+  async addUser(user) {
+    this.post('users', user);
   }
 
-  async updatePost(post) {
-    this.patch('posts', { id: post.id, post });
+  async updateUser(user) {
+    this.patch('users', { id: user.id, user });
   }
 
-  async deletePost(id) {
-    this.delete(`posts/${id}`);
+  async deleteUser(id) {
+    this.delete(`users/${id}`);
   }
 }
 
-module.exports = BlogAPI;
+module.exports = UserAPI;
