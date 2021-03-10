@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.3.11",
-    "@atomikui/core": "^0.9.8",
+    "@atomikui/core": "^0.13.5",
     "@atomikui/core-sass": "^0.2.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",

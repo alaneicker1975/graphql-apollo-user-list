@@ -1,0 +1,39 @@
+.blog-posts {
+  &__item {
+    backdrop-filter: blur(20px);
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: rgba(0, 0, 0, 0.7);
+    display: flex;
+    padding: 16px;
+    width: 100%;
+
+    & > * + * {
+      margin-left: rem(20);
+    }
+
+    & > :last-child {
+      min-width: rem(60);
+    }
+  }
+
+  &__title {
+    font-size: rem(30);
+    font-weight: $font-medium;
+  }
+
+  &__button {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+
+    &:hover,
+    &:focus {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    & > svg {
+      margin-bottom: rem(8);
+    }
+  }
+}

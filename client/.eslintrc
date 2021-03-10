@@ -1,4 +1,7 @@
 {
   "parser": "babel-eslint",
-  "extends": "atomikui"
+  "extends": "atomikui",
+  "rules": {
+    "import/prefer-default-export": 0
+  }
 }
