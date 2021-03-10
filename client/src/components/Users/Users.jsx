@@ -33,28 +33,53 @@ const Users = () => {
 
   const { page, per_page, total, total_pages, ...users } = data.users;
 
+  const createPaginationButtons = () => {
+    const buttons = [];
+
+    for (let i = 1; i <= total_pages; i += 1) {
+      buttons.push(
+        <ListItem key={`page-item-${i}`}>
+          <Button
+            theme={i === page ? 'sky-blue' : 'white'}
+            size="md"
+            onClick={() => {}}
+          >
+            {i}
+          </Button>
+        </ListItem>,
+      );
+    }
+
+    return buttons;
+  };
+
   return (
-    <Grid>
-      <Row>
-        {users.data.map(({ first_name, last_name, email, avatar }, index) => (
-          <Col md={4} key={`user-${index + 1}`}>
-            <div className="user-card">
-              <img
-                className="user-card__avatar"
-                src={avatar}
-                alt={`${first_name} ${last_name}`}
-              />
-              <div className="user-card__name">
-                {first_name} {last_name}
+    <div className="user-container">
+      <List className="text-align-center" type="horizontal">
+        {createPaginationButtons()}
+      </List>
+      <Grid>
+        <Row>
+          {users.data.map(({ first_name, last_name, email, avatar }, index) => (
+            <Col md={4} key={`user-${index + 1}`}>
+              <div className="user-card">
+                <img
+                  className="user-card__avatar"
+                  src={avatar}
+                  alt={`${first_name} ${last_name}`}
+                />
+                <div className="user-card__name">
+                  {first_name} {last_name}
+                </div>
+                <div className="user-card__info">
+                  <Link href={`mailto:${email}`}>{email}</Link>
+                </div>
               </div>
-              <div className="user-card__info">
-                <Link href={`mailto:${email}`}>{email}</Link>
-              </div>
-            </div>
-          </Col>
-        ))}
-      </Row>
-    </Grid>
+            </Col>
+          ))}
+        </Row>
+      </Grid>
+    </div>
   );
 };
 

@@ -1,3 +1,18 @@
+.user-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  & > :first-child {
+    padding: rem(16);
+  }
+
+  & > :last-child {
+    flex: 1;
+    overflow: auto;
+  }
+}
+
 .user-card {
   backdrop-filter: blur(15px);
   background: rgba(255, 255, 255, 0.5);
@@ -7,13 +22,13 @@
   text-align: center;
 
   &__name {
-    font-weight: $font-medium;
     font-size: rem(28);
+    font-weight: $font-medium;
   }
 
   &__avatar {
+    border: rem(3) solid rgba(255, 255, 255, 0.65);
     border-radius: 50%;
     width: rem(85);
-    border: rem(4) solid rgba(255, 255, 255, 0.65);
   }
 }

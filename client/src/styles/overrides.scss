@@ -1,0 +1,5 @@
+.atomikui-list--horizontal {
+  & > * + * {
+    margin-left: rem(8);
+  }
+}

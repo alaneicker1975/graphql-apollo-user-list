@@ -6,8 +6,8 @@ class UserAPI extends RESTDataSource {
     this.baseURL = 'https://reqres.in/api';
   }
 
-  async getUsers() {
-    return this.get('/users');
+  async getUsers(page = 1) {
+    return this.get('/users', { page });
   }
 
   async getUser(id) {
