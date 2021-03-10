@@ -15,13 +15,7 @@ const typeDefs = gql`
   }
 
   type SingleUser {
-    support: Support
     data: User
-  }
-
-  type Support {
-    url: String
-    text: String
   }
 
   type User {

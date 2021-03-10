@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { List, ListItem, Button, Link, Alert, Spinner } from '@atomikui/core';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
@@ -8,7 +8,28 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import { getUsers } from './queries';
 
 const Users = () => {
-  const { loading, error, data } = useQuery(getUsers());
+  const [currentPage, setCurrentPage] = useState(1);
+  const { loading, error, data } = useQuery(getUsers(currentPage));
+
+  const createPaginationButtons = (totalPages) => {
+    const buttons = [];
+
+    for (let i = 1; i <= totalPages; i += 1) {
+      buttons.push(
+        <ListItem key={`page-item-${i}`}>
+          <Button
+            theme={i === currentPage ? 'sky-blue' : 'white'}
+            size="md"
+            onClick={() => setCurrentPage(i)}
+          >
+            {i}
+          </Button>
+        </ListItem>,
+      );
+    }
+
+    return buttons;
+  };
 
   if (loading) {
     return (
@@ -31,36 +52,19 @@ const Users = () => {
     return <Alert theme="error">Error: Could not load users</Alert>;
   }
 
-  const { page, per_page, total, total_pages, ...users } = data.users;
-
-  const createPaginationButtons = () => {
-    const buttons = [];
-
-    for (let i = 1; i <= total_pages; i += 1) {
-      buttons.push(
-        <ListItem key={`page-item-${i}`}>
-          <Button
-            theme={i === page ? 'sky-blue' : 'white'}
-            size="md"
-            onClick={() => {}}
-          >
-            {i}
-          </Button>
-        </ListItem>,
-      );
-    }
-
-    return buttons;
-  };
+  const { page, total_pages, data: userData } = data.users;
 
   return (
     <div className="user-container">
-      <List className="text-align-center" type="horizontal">
-        {createPaginationButtons()}
-      </List>
+      <div className="text-align-center">
+        <List type="horizontal">{createPaginationButtons(total_pages)}</List>
+        <div className="text-color-white margin-top-8">
+          Page {page} out of {total_pages}
+        </div>
+      </div>
       <Grid>
         <Row>
-          {users.data.map(({ first_name, last_name, email, avatar }, index) => (
+          {userData.map(({ first_name, last_name, email, avatar }, index) => (
             <Col md={4} key={`user-${index + 1}`}>
               <div className="user-card">
                 <img

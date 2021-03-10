@@ -1,6 +1,7 @@
 import React from 'react';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import Users from './Users';
+
 import '@atomikui/core/dist/styles/main.min.css';
 
 const client = new ApolloClient({
