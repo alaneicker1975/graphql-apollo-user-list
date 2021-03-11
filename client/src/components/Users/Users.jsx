@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/client';
 import { Link, Alert, Spinner } from '@atomikui/core';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
@@ -8,10 +9,10 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import Pagination from '../Pagination';
 import { GET_USERS } from './queries';
 
-const Users = () => {
+const Users = ({ defaultPage }) => {
   const { loading, error, data, fetchMore } = useQuery(GET_USERS, {
     variables: {
-      page: 1,
+      page: defaultPage,
     },
   });
 
@@ -44,7 +45,7 @@ const Users = () => {
         <Pagination
           totalPages={total_pages}
           onPageSelect={fetchMore}
-          currentPage={page}
+          defaultPage={page}
         />
       </div>
       <Grid>
@@ -70,6 +71,14 @@ const Users = () => {
       </Grid>
     </div>
   );
+};
+
+Users.propTypes = {
+  defaultPage: PropTypes.number,
+};
+
+Users.defaultProps = {
+  defaultPage: 1,
 };
 
 export default Users;
