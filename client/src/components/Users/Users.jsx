@@ -1,32 +1,19 @@
 /* eslint-disable camelcase */
-import React, { useState } from 'react';
+import React from 'react';
 import { useQuery } from '@apollo/client';
-import { List, ListItem, Button, Link, Alert, Spinner } from '@atomikui/core';
+import { Link, Alert, Spinner } from '@atomikui/core';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { Grid, Row, Col } from 'react-flexbox-grid';
-import { getUsers } from './queries';
+import Pagination from '../Pagination';
+import { GET_USERS } from './queries';
 
 const Users = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const { loading, error, data } = useQuery(getUsers(currentPage));
-
-  const createPaginationButtons = (totalPages) =>
-    Array.from(Array(totalPages).keys()).map((key) => {
-      const page = key + 1;
-
-      return (
-        <ListItem key={`page-item-${page}`}>
-          <Button
-            theme={page === currentPage ? 'sky-blue' : 'white'}
-            size="md"
-            onClick={() => setCurrentPage(page)}
-          >
-            {page}
-          </Button>
-        </ListItem>
-      );
-    });
+  const { loading, error, data, fetchMore } = useQuery(GET_USERS, {
+    variables: {
+      page: 1,
+    },
+  });
 
   if (loading) {
     return (
@@ -54,10 +41,11 @@ const Users = () => {
   return (
     <div className="user-container">
       <div className="text-align-center">
-        <List type="horizontal">{createPaginationButtons(total_pages)}</List>
-        <div className="text-color-white margin-top-8">
-          Page {page} of {total_pages}
-        </div>
+        <Pagination
+          totalPages={total_pages}
+          onPageSelect={fetchMore}
+          currentPage={page}
+        />
       </div>
       <Grid>
         <Row>

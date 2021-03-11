@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
-export const getUsers = (page = 1) => gql`
-  query Users {
-    users(page: ${page}) {
+export const GET_USERS = gql`
+  query Users($page: Int!) {
+    users(page: $page) {
       page
       per_page
       total
