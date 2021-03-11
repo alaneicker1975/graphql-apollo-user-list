@@ -45,7 +45,7 @@ const Users = ({ defaultPage }) => {
         <Pagination
           totalPages={total_pages}
           onPageSelect={fetchMore}
-          defaultPage={page}
+          currentPage={page}
         />
       </div>
       <Grid>
