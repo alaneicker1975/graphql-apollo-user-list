@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/client';
-import { Link, Alert, Spinner } from '@atomikui/core';
+import { List, ListItem, Link, Alert, Spinner, Button } from '@atomikui/core';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { Grid, Row, Col } from 'react-flexbox-grid';
@@ -44,8 +44,8 @@ const Users = ({ defaultPage }) => {
       <div className="text-align-center">
         <Pagination
           totalPages={total_pages}
-          onPageSelect={fetchMore}
           currentPage={page}
+          onPageSelect={fetchMore}
         />
       </div>
       <Grid>
@@ -64,6 +64,18 @@ const Users = ({ defaultPage }) => {
                 <div className="user-card__info">
                   <Link href={`mailto:${email}`}>{email}</Link>
                 </div>
+                <List type="horizontal" className="user-card__actions">
+                  <ListItem>
+                    <Button className="user-card__action-btn" theme="hollow">
+                      <Icon icon={faEdit} size="lg" />
+                    </Button>
+                  </ListItem>
+                  <ListItem>
+                    <Button className="user-card__action-btn" theme="hollow">
+                      <Icon icon={faTrashAlt} size="lg" />
+                    </Button>
+                  </ListItem>
+                </List>
               </div>
             </Col>
           ))}
