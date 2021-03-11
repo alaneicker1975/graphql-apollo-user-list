@@ -8,6 +8,7 @@ const EditUserModal = () => {
 
   return (
     <Modal
+      disableOverlayclick
       isOpen={showEditModal}
       onClose={() => setShowEditModal(false)}
       title="Edit User"

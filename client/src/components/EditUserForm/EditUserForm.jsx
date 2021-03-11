@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FormField, Spinner, Overlay, Alert } from '@atomikui/core';
 import { useQuery } from '@apollo/client';
 import { useAppContext } from '../../context/AppContext';
@@ -7,24 +7,24 @@ import { GET_USER } from './queries';
 const EditUserForm = () => {
   const { editId } = useAppContext();
 
+  const [userData, setUserData] = useState({
+    first_name: '',
+    last_name: '',
+    email: '',
+    avatar: '',
+  });
+
   const { loading, error, data } = useQuery(GET_USER, {
     variables: {
       id: editId,
     },
   });
 
-  let userData;
-
-  if (loading) {
-    userData = {
-      first_name: '',
-      last_name: '',
-      email: '',
-      avatar: '',
-    };
-  } else {
-    userData = data.user.data;
-  }
+  useEffect(() => {
+    if (!loading) {
+      setUserData(data.user.data);
+    }
+  }, [loading, data]);
 
   if (error) {
     return <Alert theme="error">Error: Could not load user data</Alert>;
