@@ -11,25 +11,22 @@ const Users = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { loading, error, data } = useQuery(getUsers(currentPage));
 
-  const createPaginationButtons = (totalPages) => {
-    const buttons = [];
+  const createPaginationButtons = (totalPages) =>
+    Array.from(Array(totalPages).keys()).map((key) => {
+      const page = key + 1;
 
-    for (let i = 1; i <= totalPages; i += 1) {
-      buttons.push(
-        <ListItem key={`page-item-${i}`}>
+      return (
+        <ListItem key={`page-item-${page}`}>
           <Button
-            theme={i === currentPage ? 'sky-blue' : 'white'}
+            theme={page === currentPage ? 'sky-blue' : 'white'}
             size="md"
-            onClick={() => setCurrentPage(i)}
+            onClick={() => setCurrentPage(page)}
           >
-            {i}
+            {page}
           </Button>
-        </ListItem>,
+        </ListItem>
       );
-    }
-
-    return buttons;
-  };
+    });
 
   if (loading) {
     return (
@@ -59,7 +56,7 @@ const Users = () => {
       <div className="text-align-center">
         <List type="horizontal">{createPaginationButtons(total_pages)}</List>
         <div className="text-color-white margin-top-8">
-          Page {page} out of {total_pages}
+          Page {page} of {total_pages}
         </div>
       </div>
       <Grid>
