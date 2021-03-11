@@ -1,6 +1,8 @@
 import React from 'react';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import Users from './Users';
+import EditUserModal from './EditUserModal';
+import AppProvider from '../context/AppContext';
 
 import '@atomikui/core/dist/styles/main.min.css';
 
@@ -11,9 +13,12 @@ const client = new ApolloClient({
 
 const App = () => (
   <ApolloProvider client={client}>
-    <main>
-      <Users />
-    </main>
+    <AppProvider>
+      <main>
+        <Users />
+        <EditUserModal />
+      </main>
+    </AppProvider>
   </ApolloProvider>
 );
 

@@ -27,7 +27,6 @@
   }
 
   &__avatar {
-    border: rem(3) solid rgba(255, 255, 255, 0.65);
     border-radius: 50%;
     height: rem(85);
     width: rem(85);
@@ -35,18 +34,8 @@
 
   &__actions {
     border-top: rem(1) solid rgba(255, 255, 255, 0.6);
-    margin-top: rem(18);
-    padding-top: rem(8);
+    margin-top: rem(16);
+    padding-top: rem(16);
     text-align: center;
-
-    button {
-      padding: rem(12);
-    }
-  }
-
-  &__action-btn {
-    &:hover {
-      background: rgba(255, 255, 255, 0.7);
-    }
   }
 }

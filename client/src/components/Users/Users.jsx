@@ -3,11 +3,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/client';
 import { List, ListItem, Link, Alert, Spinner, Button } from '@atomikui/core';
-import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import Pagination from '../Pagination';
 import { GET_USERS } from './queries';
+import { useAppContext } from '../../context/AppContext';
 
 const Users = ({ defaultPage }) => {
   const { loading, error, data, fetchMore } = useQuery(GET_USERS, {
@@ -15,6 +14,8 @@ const Users = ({ defaultPage }) => {
       page: defaultPage,
     },
   });
+
+  const { setShowEditModal } = useAppContext();
 
   if (loading) {
     return (
@@ -48,6 +49,7 @@ const Users = ({ defaultPage }) => {
           onPageSelect={fetchMore}
         />
       </div>
+      {/* Refactor below to be separate component */}
       <Grid>
         <Row>
           {userData.map(({ first_name, last_name, email, avatar }, index) => (
@@ -66,13 +68,18 @@ const Users = ({ defaultPage }) => {
                 </div>
                 <List type="horizontal" className="user-card__actions">
                   <ListItem>
-                    <Button className="user-card__action-btn" theme="hollow">
-                      <Icon icon={faEdit} size="lg" />
+                    <Button
+                      theme="blue"
+                      shape="pill"
+                      size="md"
+                      onClick={() => setShowEditModal(true)}
+                    >
+                      edit
                     </Button>
                   </ListItem>
                   <ListItem>
-                    <Button className="user-card__action-btn" theme="hollow">
-                      <Icon icon={faTrashAlt} size="lg" />
+                    <Button theme="blue-gray" shape="pill" size="md">
+                      delete
                     </Button>
                   </ListItem>
                 </List>
