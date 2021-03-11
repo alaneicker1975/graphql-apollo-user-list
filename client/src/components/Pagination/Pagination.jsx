@@ -12,6 +12,7 @@ const Pagination = ({ currentPage, totalPages, onPageSelect }) => (
             <Button
               theme={page === currentPage ? 'sky-blue' : 'white'}
               size="md"
+              style={{ borderRadius: '50%', width: 40, height: 40, padding: 0 }}
               onClick={() =>
                 onPageSelect({
                   variables: {

@@ -13,3 +13,12 @@ export const GET_USER = gql`
     }
   }
 `;
+
+export const UPDATE_USER = gql`
+  mutation UpdateUser($type: String!) {
+    updateUser(type: $type) {
+      id
+      type
+    }
+  }
+`;

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { FormField, Spinner, Overlay, Alert } from '@atomikui/core';
-import { useQuery } from '@apollo/client';
+import { FormField, Spinner, Overlay, Alert, Button } from '@atomikui/core';
 import { useAppContext } from '../../context/AppContext';
-import { GET_USER } from './queries';
+import { useGetUser, useUpdateUser } from './hooks';
 
 const EditUserForm = () => {
   const { editId } = useAppContext();
@@ -14,11 +13,28 @@ const EditUserForm = () => {
     avatar: '',
   });
 
-  const { loading, error, data } = useQuery(GET_USER, {
-    variables: {
-      id: editId,
-    },
-  });
+  const { loading, error, data } = useGetUser(editId);
+  const { updateUser } = useUpdateUser();
+
+  const handleChange = (e) => {
+    const { name } = e.target;
+    const { value } = e.target;
+    setUserData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = () => {
+    updateUser({ variables: { userData } });
+    setUserData((prevState) => ({
+      ...prevState,
+      first_name: '',
+      last_name: '',
+      email: '',
+      avatar: '',
+    }));
+  };
 
   useEffect(() => {
     if (!loading) {
@@ -27,28 +43,29 @@ const EditUserForm = () => {
   }, [loading, data]);
 
   if (error) {
-    return <Alert theme="error">Error: Could not load user data</Alert>;
+    return <Alert theme="error">Error: Could not load form data</Alert>;
   }
 
   return (
     <>
       <form>
-        <FormField
-          className="margin-bottom-8"
-          label="First Name"
-          value={userData.first_name}
-        />
-        <FormField
-          className="margin-bottom-8"
-          label="Last Name"
-          value={userData.last_name}
-        />
-        <FormField
-          className="margin-bottom-8"
-          label="Email Address"
-          value={userData.email}
-        />
-        <FormField label="Avatar URL" value={userData.avatar} />
+        {Object.keys(userData).map((key) =>
+          !key.match(/(__typename|id)/) ? (
+            <FormField
+              key={key}
+              className="margin-bottom-8"
+              name={key}
+              id={key}
+              value={userData[key]}
+              onChange={handleChange}
+            />
+          ) : null,
+        )}
+        <div className="margin-top-16">
+          <Button theme="blue" shape="pill" onClick={handleSubmit}>
+            save
+          </Button>
+        </div>
       </form>
       <Overlay className="modal-overlay" theme="white" isActive={loading}>
         <Spinner size="xlg" theme="blue" />
