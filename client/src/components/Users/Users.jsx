@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/client';
@@ -15,7 +14,7 @@ const Users = ({ defaultPage }) => {
     },
   });
 
-  const { setShowEditModal } = useAppContext();
+  const { setShowEditModal, setEditId } = useAppContext();
 
   if (loading) {
     return (
@@ -52,40 +51,45 @@ const Users = ({ defaultPage }) => {
       {/* Refactor below to be separate component */}
       <Grid>
         <Row>
-          {userData.map(({ first_name, last_name, email, avatar }, index) => (
-            <Col md={4} key={`user-${index + 1}`}>
-              <div className="user-card">
-                <img
-                  className="user-card__avatar"
-                  src={avatar}
-                  alt={`${first_name} ${last_name}`}
-                />
-                <div className="user-card__name">
-                  {first_name} {last_name}
+          {userData.map(
+            ({ id, first_name, last_name, email, avatar }, index) => (
+              <Col md={4} key={`user-${index + 1}`}>
+                <div className="user-card">
+                  <img
+                    className="user-card__avatar"
+                    src={avatar}
+                    alt={`${first_name} ${last_name}`}
+                  />
+                  <div className="user-card__name">
+                    {first_name} {last_name}
+                  </div>
+                  <div className="user-card__info">
+                    <Link href={`mailto:${email}`}>{email}</Link>
+                  </div>
+                  <List type="horizontal" className="user-card__actions">
+                    <ListItem>
+                      <Button
+                        theme="blue"
+                        shape="pill"
+                        size="md"
+                        onClick={() => {
+                          setShowEditModal(true);
+                          setEditId(id);
+                        }}
+                      >
+                        edit
+                      </Button>
+                    </ListItem>
+                    <ListItem>
+                      <Button theme="blue-gray" shape="pill" size="md">
+                        delete
+                      </Button>
+                    </ListItem>
+                  </List>
                 </div>
-                <div className="user-card__info">
-                  <Link href={`mailto:${email}`}>{email}</Link>
-                </div>
-                <List type="horizontal" className="user-card__actions">
-                  <ListItem>
-                    <Button
-                      theme="blue"
-                      shape="pill"
-                      size="md"
-                      onClick={() => setShowEditModal(true)}
-                    >
-                      edit
-                    </Button>
-                  </ListItem>
-                  <ListItem>
-                    <Button theme="blue-gray" shape="pill" size="md">
-                      delete
-                    </Button>
-                  </ListItem>
-                </List>
-              </div>
-            </Col>
-          ))}
+              </Col>
+            ),
+          )}
         </Row>
       </Grid>
     </div>

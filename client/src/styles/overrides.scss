@@ -7,6 +7,8 @@
 .atomikui-modal {
   border-radius: rem(10);
   max-width: rem(500);
+  overflow: hidden;
+  position: relative;
 }
 
 .atomikui-modal__title {
@@ -18,4 +20,10 @@
   font-size: rem(16);
   font-weight: $font-medium;
   text-transform: lowercase;
+}
+
+.atomikui-overlay {
+  &.modal-overlay {
+    position: absolute;
+  }
 }

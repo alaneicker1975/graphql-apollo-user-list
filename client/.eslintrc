@@ -2,6 +2,7 @@
   "parser": "babel-eslint",
   "extends": "atomikui",
   "rules": {
-    "import/prefer-default-export": 0
+    "import/prefer-default-export": 0,
+    "camelcase": 0
   }
 }

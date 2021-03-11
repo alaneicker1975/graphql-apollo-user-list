@@ -1,5 +1,6 @@
 import React from 'react';
-import { Modal, Button, FormField } from '@atomikui/core';
+import { Modal, Button } from '@atomikui/core';
+import EditUserForm from '../EditUserForm';
 import { useAppContext } from '../../context/AppContext';
 
 const EditUserModal = () => {
@@ -16,12 +17,7 @@ const EditUserModal = () => {
         </Button>
       }
     >
-      <form>
-        <FormField className="margin-bottom-8" label="First Name" />
-        <FormField className="margin-bottom-8" label="Last Name" />
-        <FormField className="margin-bottom-8" label="Email Address" />
-        <FormField label="Avatar URL" />
-      </form>
+      <EditUserForm />
     </Modal>
   );
 };
