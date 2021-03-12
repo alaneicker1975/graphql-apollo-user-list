@@ -15,7 +15,13 @@ export const UPDATE_USER = gql`
       email: $email
       avatar: $avatar
     ) {
-      updatedAt
+      data {
+        id
+        first_name
+        last_name
+        email
+        avatar
+      }
     }
   }
 `;

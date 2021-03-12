@@ -13,7 +13,7 @@ const typeDefs = gql`
       last_name: String
       email: String
       avatar: String
-    ): UpdateResponse
+    ): SingleUser!
   }
 
   input UserInput {

@@ -6,7 +6,9 @@ module.exports = {
       dataSources.userApi.getUser(id),
   },
   Mutation: {
-    updateUser: async (_source, data, { dataSources }) =>
-      dataSources.userApi.updateUser(data),
+    updateUser: async (_source, data, { dataSources }) => {
+      const { body } = await dataSources.userApi.updateUser(data);
+      return { data: { id: data.id, ...body } };
+    },
   },
 };
