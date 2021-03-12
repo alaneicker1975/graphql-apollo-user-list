@@ -37,17 +37,18 @@ const EditUserForm = () => {
   return (
     <>
       <form>
-        {Object.keys(userData).map((key) =>
-          !key.match(/(__typename|id)/) ? (
-            <FormField
-              key={key}
-              className="margin-bottom-8"
-              name={key}
-              id={key}
-              defaultValue={userData[key]}
-              onChange={handleChange}
-            />
-          ) : null,
+        {Object.keys(userData).map(
+          (key) =>
+            !key.match(/(__typename|id)/) && (
+              <FormField
+                key={key}
+                className="margin-bottom-8"
+                name={key}
+                id={key}
+                defaultValue={userData[key]}
+                onChange={handleChange}
+              />
+            ),
         )}
         <div className="margin-top-16">
           <Button theme="blue" shape="pill" onClick={handleSubmit}>
