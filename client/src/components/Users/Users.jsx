@@ -1,20 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useQuery } from '@apollo/client';
 import { List, ListItem, Link, Alert, Spinner, Button } from '@atomikui/core';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import Pagination from '../Pagination';
-import { GET_USERS } from './queries';
+import { useGetUsers, useDeleteUser } from './hooks';
 import { useAppContext } from '../../context/AppContext';
 
 const Users = ({ defaultPage }) => {
-  const { loading, error, data, fetchMore } = useQuery(GET_USERS, {
-    variables: {
-      page: defaultPage,
-    },
-  });
-
   const { setShowEditModal, setEditId } = useAppContext();
+  const { loading, error, data, fetchMore } = useGetUsers(defaultPage);
+  const { deleteUser } = useDeleteUser();
+
+  const handleDeleteUser = (id) => {
+    deleteUser({ variables: { id } });
+  };
 
   if (loading) {
     return (
@@ -81,7 +80,12 @@ const Users = ({ defaultPage }) => {
                       </Button>
                     </ListItem>
                     <ListItem>
-                      <Button theme="blue-gray" shape="pill" size="md">
+                      <Button
+                        theme="blue-gray"
+                        shape="pill"
+                        size="md"
+                        onClick={() => handleDeleteUser(id)}
+                      >
                         delete
                       </Button>
                     </ListItem>

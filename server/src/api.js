@@ -24,7 +24,8 @@ class UserAPI extends RESTDataSource {
   }
 
   async deleteUser(id) {
-    return this.delete(`/users/${id}`);
+    await this.delete(`/users/${id}`);
+    return { id };
   }
 }
 

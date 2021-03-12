@@ -10,5 +10,7 @@ module.exports = {
       const { body } = await dataSources.userApi.updateUser(data);
       return { data: { id: data.id, ...body } };
     },
+    deleteUser: async (_source, { id }, { dataSources }) =>
+      dataSources.userApi.deleteUser(id),
   },
 };

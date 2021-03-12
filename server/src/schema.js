@@ -14,14 +14,8 @@ const typeDefs = gql`
       email: String
       avatar: String
     ): SingleUser!
-  }
 
-  input UserInput {
-    id: ID!
-    first_name: String
-    last_name: String
-    email: String
-    avatar: String
+    deleteUser(id: ID!): DeleteResponse
   }
 
   type AllUsers {
@@ -37,15 +31,15 @@ const typeDefs = gql`
   }
 
   type User {
-    id: Int
+    id: ID
     first_name: String
     last_name: String
     email: String
     avatar: String
   }
 
-  type UpdateResponse {
-    updatedAt: String
+  type DeleteResponse {
+    id: ID
   }
 `;
 

@@ -35,7 +35,7 @@ const EditUserForm = () => {
 
   return (
     <>
-      <form>
+      <form autoComplete="off">
         {Object.keys(userData).map(
           (key) =>
             !key.match(/(__typename|id)/) && (
