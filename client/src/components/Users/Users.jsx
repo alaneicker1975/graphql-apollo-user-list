@@ -46,13 +46,15 @@ const Users = ({ defaultPage }) => {
             ({ id, first_name, last_name, email, avatar }, index) => (
               <Col md={4} key={`user-${index + 1}`}>
                 <UserCard
-                  id={id}
                   firstName={first_name}
                   lastName={last_name}
                   email={email}
                   avatar={avatar}
-                  onUpdate={() => {}}
-                  onDelete={() => {}}
+                  onUpdate={() => {
+                    setShowEditModal(true);
+                    setEditId(id);
+                  }}
+                  onDelete={() => handleDeleteUser(id)}
                 />
                 {/* <div className="user-card">
                   <Overlay className="is-confirm" isActive>

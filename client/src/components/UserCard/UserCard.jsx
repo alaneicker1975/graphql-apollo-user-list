@@ -1,78 +1,95 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Overlay, Button, List, ListItem, Link } from '@atomikui/core';
 
 const fullName = (firstName, lastName) => `${firstName} ${lastName}`;
 
 const UserCard = ({
-  id,
   firstName,
   lastName,
   email,
   avatar,
   onUpdate,
   onDelete,
-}) => (
-  <div className="user-card">
-    <Overlay className="is-confirm">
-      <div className="text-align-center text-color-white">
-        <div className="margin-bottom-16">
-          delete
-          <br />
-          <span className="text-size-24">{fullName(firstName, lastName)}?</span>
+}) => {
+  const [showConfirm, setShowConfirm] = useState(false);
+
+  return (
+    <div className="user-card">
+      <Overlay className="is-confirm" isActive={showConfirm}>
+        <div className="text-align-center text-color-white">
+          <div className="margin-bottom-16">
+            delete
+            <br />
+            <span className="text-size-24">
+              {fullName(firstName, lastName)}?
+            </span>
+          </div>
+          <List type="horizontal">
+            <ListItem>
+              <Button
+                theme="red"
+                size="md"
+                shape="pill"
+                onClick={() => {
+                  onDelete();
+                  setShowConfirm(false);
+                }}
+              >
+                delete
+              </Button>
+            </ListItem>
+            <ListItem>
+              <Button
+                theme="white"
+                size="md"
+                shape="pill"
+                onClick={() => setShowConfirm(false)}
+              >
+                cancel
+              </Button>
+            </ListItem>
+          </List>
         </div>
-        <List type="horizontal">
-          <ListItem>
-            <Button theme="red" size="md" shape="pill">
-              delete
-            </Button>
-          </ListItem>
-          <ListItem>
-            <Button theme="white" size="md" shape="pill">
-              cancel
-            </Button>
-          </ListItem>
-        </List>
+      </Overlay>
+      <img
+        className="user-card__avatar"
+        src={avatar}
+        alt={fullName(firstName, lastName)}
+      />
+      <div className="user-card__name">{fullName(firstName, lastName)}</div>
+      <div className="user-card__info">
+        <Link href={`mailto:${email}`}>{email}</Link>
       </div>
-    </Overlay>
-    <img
-      className="user-card__avatar"
-      src={avatar}
-      alt={fullName(firstName, lastName)}
-    />
-    <div className="user-card__name">{fullName(firstName, lastName)}</div>
-    <div className="user-card__info">
-      <Link href={`mailto:${email}`}>{email}</Link>
+      <List type="horizontal" className="user-card__actions">
+        <ListItem>
+          <Button
+            theme="blue"
+            shape="pill"
+            size="md"
+            onClick={() => onUpdate()}
+          >
+            edit
+          </Button>
+        </ListItem>
+        <ListItem>
+          <Button
+            theme="blue-gray"
+            shape="pill"
+            size="md"
+            onClick={() => setShowConfirm(true)}
+          >
+            delete
+          </Button>
+        </ListItem>
+      </List>
     </div>
-    <List type="horizontal" className="user-card__actions">
-      <ListItem>
-        <Button
-          theme="blue"
-          shape="pill"
-          size="md"
-          onClick={() => onUpdate(id)}
-        >
-          edit
-        </Button>
-      </ListItem>
-      <ListItem>
-        <Button
-          theme="blue-gray"
-          shape="pill"
-          size="md"
-          onClick={() => onDelete(id)}
-        >
-          delete
-        </Button>
-      </ListItem>
-    </List>
-  </div>
-);
+  );
+};
 
 UserCard.propTypes = {
   onUpdate: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
