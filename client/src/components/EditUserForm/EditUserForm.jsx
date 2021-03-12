@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { FormField, Spinner, Overlay, Alert, Button } from '@atomikui/core';
 import { useAppContext } from '../../context/AppContext';
 import { useGetUser, useUpdateUser } from './hooks';
-import { GET_USERS } from '../Users/queries';
 
 const EditUserForm = () => {
   const { editId, setShowEditModal } = useAppContext();

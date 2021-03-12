@@ -19,5 +19,6 @@ export const useUpdateUser = () => {
   });
 
   const [updateUser] = useMutation(UPDATE_USER);
+
   return { updateUser, userData, setUserData };
 };
