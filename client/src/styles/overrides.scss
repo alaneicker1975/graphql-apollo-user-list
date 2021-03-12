@@ -23,7 +23,11 @@
 }
 
 .atomikui-overlay {
-  &.modal-overlay {
+  &.is-modal-overlay {
     position: absolute;
+  }
+  &.is-confirm {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
   }
 }

@@ -55,7 +55,7 @@ const EditUserForm = () => {
           </Button>
         </div>
       </form>
-      <Overlay className="modal-overlay" theme="white" isActive={loading}>
+      <Overlay className="is-modal-overlay" theme="white" isActive={loading}>
         <Spinner size="xlg" theme="blue" />
       </Overlay>
     </>

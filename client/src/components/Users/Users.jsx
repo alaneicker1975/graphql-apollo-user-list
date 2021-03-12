@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { List, ListItem, Link, Alert, Spinner, Button } from '@atomikui/core';
+import { List, ListItem, Link, Alert, Overlay, Button } from '@atomikui/core';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import Pagination from '../Pagination';
+import UserCard from '../UserCard';
 import { useGetUsers, useDeleteUser } from './hooks';
 import { useAppContext } from '../../context/AppContext';
 
@@ -39,13 +40,44 @@ const Users = ({ defaultPage }) => {
           onPageSelect={fetchMore}
         />
       </div>
-      {/* Refactor below to be separate component */}
       <Grid>
         <Row>
           {userData.map(
             ({ id, first_name, last_name, email, avatar }, index) => (
               <Col md={4} key={`user-${index + 1}`}>
-                <div className="user-card">
+                <UserCard
+                  id={id}
+                  firstName={first_name}
+                  lastName={last_name}
+                  email={email}
+                  avatar={avatar}
+                  onUpdate={() => {}}
+                  onDelete={() => {}}
+                />
+                {/* <div className="user-card">
+                  <Overlay className="is-confirm" isActive>
+                    <div className="text-align-center text-color-white">
+                      <div className="margin-bottom-16">
+                        delete
+                        <br />
+                        <span className="text-size-24">
+                          {first_name} {last_name}?
+                        </span>
+                      </div>
+                      <List type="horizontal">
+                        <ListItem>
+                          <Button theme="red" size="md" shape="pill">
+                            delete
+                          </Button>
+                        </ListItem>
+                        <ListItem>
+                          <Button theme="white" size="md" shape="pill">
+                            cancel
+                          </Button>
+                        </ListItem>
+                      </List>
+                    </div>
+                  </Overlay>
                   <img
                     className="user-card__avatar"
                     src={avatar}
@@ -82,7 +114,7 @@ const Users = ({ defaultPage }) => {
                       </Button>
                     </ListItem>
                   </List>
-                </div>
+                </div> */}
               </Col>
             ),
           )}
