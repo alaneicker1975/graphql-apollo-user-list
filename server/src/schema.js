@@ -6,6 +6,24 @@ const typeDefs = gql`
     user(id: ID!): SingleUser!
   }
 
+  type Mutation {
+    updateUser(
+      id: ID!
+      first_name: String
+      last_name: String
+      email: String
+      avatar: String
+    ): SingleUser
+  }
+
+  input UserInput {
+    id: ID!
+    first_name: String
+    last_name: String
+    email: String
+    avatar: String
+  }
+
   type AllUsers {
     page: Int
     per_page: Int

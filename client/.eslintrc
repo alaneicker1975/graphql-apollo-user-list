@@ -3,6 +3,7 @@
   "extends": "atomikui",
   "rules": {
     "import/prefer-default-export": 0,
-    "camelcase": 0
+    "camelcase": 0,
+    "prettier/prettier": 0
   }
 }
