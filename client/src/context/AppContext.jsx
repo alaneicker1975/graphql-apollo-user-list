@@ -7,11 +7,19 @@ export const useAppContext = () => useContext(AppContext);
 
 const AppProvider = ({ children }) => {
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showLoader, setShowLoader] = useState(false);
   const [editId, setEditId] = useState();
 
   return (
     <AppContext.Provider
-      value={{ showEditModal, setShowEditModal, editId, setEditId }}
+      value={{
+        showLoader,
+        setShowLoader,
+        showEditModal,
+        setShowEditModal,
+        editId,
+        setEditId,
+      }}
     >
       {children}
     </AppContext.Provider>

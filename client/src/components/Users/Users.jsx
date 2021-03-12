@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { List, ListItem, Link, Alert, Spinner, Button } from '@atomikui/core';
 import { Grid, Row, Col } from 'react-flexbox-grid';
@@ -7,29 +7,21 @@ import { useGetUsers, useDeleteUser } from './hooks';
 import { useAppContext } from '../../context/AppContext';
 
 const Users = ({ defaultPage }) => {
-  const { setShowEditModal, setEditId } = useAppContext();
+  const { setShowEditModal, setEditId, setShowLoader } = useAppContext();
   const { loading, error, data, fetchMore } = useGetUsers(defaultPage);
-  const { deleteUser } = useDeleteUser();
+  const { deleteUser, deleteInProgress } = useDeleteUser();
 
   const handleDeleteUser = (id) => {
+    setShowLoader(true);
     deleteUser({ variables: { id } });
   };
 
+  useEffect(() => {
+    setShowLoader(!!loading || !!deleteInProgress);
+  }, [loading, deleteInProgress, setShowLoader]);
+
   if (loading) {
-    return (
-      <Spinner
-        size="xlg"
-        theme="white"
-        themeVariant="light"
-        style={{
-          position: 'fixed',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          zIndex: 900,
-        }}
-      />
-    );
+    return null;
   }
 
   if (error) {

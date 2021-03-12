@@ -13,7 +13,7 @@ export const useGetUsers = (defaultPage) => {
 };
 
 export const useDeleteUser = () => {
-  const [deleteUser] = useMutation(DELETE_USER, {
+  const [deleteUser, { loading: deleteInProgress }] = useMutation(DELETE_USER, {
     update(cache, { data }) {
       cache.evict({
         id: cache.identify({
@@ -23,5 +23,6 @@ export const useDeleteUser = () => {
       });
     },
   });
-  return { deleteUser };
+
+  return { deleteUser, deleteInProgress };
 };

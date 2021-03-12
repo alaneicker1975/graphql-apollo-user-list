@@ -1,6 +1,7 @@
 import React from 'react';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import Users from './Users';
+import Loader from './Loader';
 import EditUserModal from './EditUserModal';
 import AppProvider from '../context/AppContext';
 
@@ -17,6 +18,7 @@ const App = () => (
       <main>
         <Users />
         <EditUserModal />
+        <Loader />
       </main>
     </AppProvider>
   </ApolloProvider>
