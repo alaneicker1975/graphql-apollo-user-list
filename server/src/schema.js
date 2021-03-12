@@ -13,7 +13,7 @@ const typeDefs = gql`
       last_name: String
       email: String
       avatar: String
-    ): SingleUser
+    ): UpdateResponse
   }
 
   input UserInput {
@@ -42,6 +42,10 @@ const typeDefs = gql`
     last_name: String
     email: String
     avatar: String
+  }
+
+  type UpdateResponse {
+    updatedAt: String
   }
 `;
 

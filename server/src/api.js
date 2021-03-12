@@ -19,8 +19,8 @@ class UserAPI extends RESTDataSource {
   }
 
   async updateUser(user) {
-    const { id, ...data } = user;
-    return this.patch(`/users`, { id, data });
+    const { id, ...body } = user;
+    return this.patch(`/users`, { id, body });
   }
 
   async deleteUser(id) {
