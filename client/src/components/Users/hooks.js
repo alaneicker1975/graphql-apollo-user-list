@@ -1,11 +1,14 @@
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_USERS } from './queries';
 import { DELETE_USER } from './mutations';
+import { useAppContext } from '../../context/AppContext';
 
-export const useGetUsers = (defaultPage) => {
+export const useGetUsers = () => {
+  const { currentPage } = useAppContext();
+
   const { loading, error, data, fetchMore } = useQuery(GET_USERS, {
     variables: {
-      page: defaultPage,
+      page: currentPage,
     },
   });
 

@@ -6,6 +6,7 @@ const AppContext = createContext({});
 export const useAppContext = () => useContext(AppContext);
 
 const AppProvider = ({ children }) => {
+  const [currentPage, setCurrentPage] = useState(1);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
   const [editId, setEditId] = useState();
@@ -13,6 +14,8 @@ const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
+        currentPage,
+        setCurrentPage,
         showLoader,
         setShowLoader,
         showEditModal,

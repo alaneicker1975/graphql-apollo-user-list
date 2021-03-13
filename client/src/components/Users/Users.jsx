@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { Alert, Button } from '@atomikui/core';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import Pagination from '../Pagination';
@@ -7,9 +6,9 @@ import UserCard from '../UserCard';
 import { useGetUsers, useDeleteUser } from './hooks';
 import { useAppContext } from '../../context/AppContext';
 
-const Users = ({ defaultPage }) => {
+const Users = () => {
   const { setShowEditModal, setEditId, setShowLoader } = useAppContext();
-  const { loading, error, data, fetchMore } = useGetUsers(defaultPage);
+  const { loading, error, data, fetchMore } = useGetUsers();
   const { deleteUser, deleteInProgress } = useDeleteUser();
 
   const handleDeleteUser = (id) => {
@@ -70,14 +69,6 @@ const Users = ({ defaultPage }) => {
       </Grid>
     </div>
   );
-};
-
-Users.propTypes = {
-  defaultPage: PropTypes.number,
-};
-
-Users.defaultProps = {
-  defaultPage: 1,
 };
 
 export default Users;
