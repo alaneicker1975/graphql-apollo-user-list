@@ -7,7 +7,7 @@ export const useAppContext = () => useContext(AppContext);
 
 const AppProvider = ({ children }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [showEditModal, setShowEditModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
   const [editId, setEditId] = useState();
 
@@ -18,8 +18,8 @@ const AppProvider = ({ children }) => {
         setCurrentPage,
         showLoader,
         setShowLoader,
-        showEditModal,
-        setShowEditModal,
+        showModal,
+        setShowModal,
         editId,
         setEditId,
       }}

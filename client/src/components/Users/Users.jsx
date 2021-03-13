@@ -7,7 +7,7 @@ import { useGetUsers, useDeleteUser } from './hooks';
 import { useAppContext } from '../../context/AppContext';
 
 const Users = () => {
-  const { setShowEditModal, setEditId, setShowLoader } = useAppContext();
+  const { setShowModal, setEditId, setShowLoader } = useAppContext();
   const { loading, error, data, fetchMore } = useGetUsers();
   const { deleteUser, deleteInProgress } = useDeleteUser();
 
@@ -57,7 +57,7 @@ const Users = () => {
                   email={email}
                   avatar={avatar}
                   onUpdate={() => {
-                    setShowEditModal(true);
+                    setShowModal(true);
                     setEditId(id);
                   }}
                   onDelete={() => handleDeleteUser(id)}

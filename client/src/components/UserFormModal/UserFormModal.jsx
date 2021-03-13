@@ -4,13 +4,13 @@ import EditUserForm from '../EditUserForm';
 import { useAppContext } from '../../context/AppContext';
 
 const UserFormModal = () => {
-  const { showEditModal, setShowEditModal } = useAppContext();
+  const { showModal, setShowModal } = useAppContext();
 
   return (
     <Modal
       disableOverlayclick
-      isOpen={showEditModal}
-      onClose={() => setShowEditModal(false)}
+      isOpen={showModal}
+      onClose={() => setShowModal(false)}
       title="Edit User"
     >
       <EditUserForm />
