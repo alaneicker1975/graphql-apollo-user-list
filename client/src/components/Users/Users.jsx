@@ -34,11 +34,7 @@ const Users = () => {
     <div className="user-container">
       <div className="flex flex--align-middle">
         <div className="flex flex--hr-12 flex__item--grow">
-          <Pagination
-            totalPages={total_pages}
-            currentPage={page}
-            onPageSelect={fetchMore}
-          />
+          <Pagination totalPages={total_pages} currentPage={page} />
         </div>
         <div>
           <Button
