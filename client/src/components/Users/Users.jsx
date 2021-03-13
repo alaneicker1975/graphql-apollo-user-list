@@ -7,7 +7,7 @@ import { useGetUsers, useDeleteUser } from './hooks';
 import { useAppContext } from '../../context/AppContext';
 
 const Users = () => {
-  const { setShowModal, setEditId, setShowLoader } = useAppContext();
+  const { setModal, setEditId, setShowLoader } = useAppContext();
   const { loading, error, data, fetchMore } = useGetUsers();
   const { deleteUser, deleteInProgress } = useDeleteUser();
 
@@ -41,7 +41,11 @@ const Users = () => {
           />
         </div>
         <div>
-          <Button theme="blue" shape="pill">
+          <Button
+            theme="blue"
+            shape="pill"
+            onClick={() => setModal({ isOpen: true, type: 'add' })}
+          >
             add user
           </Button>
         </div>
@@ -57,7 +61,7 @@ const Users = () => {
                   email={email}
                   avatar={avatar}
                   onUpdate={() => {
-                    setShowModal(true);
+                    setModal({ isOpen: true, type: 'edit' });
                     setEditId(id);
                   }}
                   onDelete={() => handleDeleteUser(id)}

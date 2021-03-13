@@ -4,7 +4,7 @@ import { useAppContext } from '../../context/AppContext';
 const AddUserForm = () => {
   const { setShowAddForm } = useAppContext();
 
-  return <></>;
+  return <>Add</>;
 };
 
 export default AddUserForm;

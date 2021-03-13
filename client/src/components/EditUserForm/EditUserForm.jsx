@@ -4,7 +4,7 @@ import { useAppContext } from '../../context/AppContext';
 import { useGetUser, useUpdateUser } from './hooks';
 
 const EditUserForm = () => {
-  const { editId, setShowModal } = useAppContext();
+  const { editId, setModal } = useAppContext();
 
   const { loading, error, data } = useGetUser(editId);
   const { updateUser, userData, setUserData } = useUpdateUser();
@@ -20,7 +20,7 @@ const EditUserForm = () => {
 
   const handleSubmit = () => {
     updateUser({ variables: userData });
-    setShowModal(false);
+    setModal(false);
   };
 
   useEffect(() => {
