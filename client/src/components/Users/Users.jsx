@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { List, ListItem, Link, Alert, Overlay, Button } from '@atomikui/core';
+import { Alert, Button } from '@atomikui/core';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import Pagination from '../Pagination';
 import UserCard from '../UserCard';
@@ -33,12 +33,19 @@ const Users = ({ defaultPage }) => {
 
   return (
     <div className="user-container">
-      <div className="text-align-center">
-        <Pagination
-          totalPages={total_pages}
-          currentPage={page}
-          onPageSelect={fetchMore}
-        />
+      <div className="flex flex--align-middle">
+        <div style={{ flex: 1 }}>
+          <Pagination
+            totalPages={total_pages}
+            currentPage={page}
+            onPageSelect={fetchMore}
+          />
+        </div>
+        <div>
+          <Button theme="blue" shape="pill">
+            add user
+          </Button>
+        </div>
       </div>
       <Grid>
         <Row>
@@ -56,67 +63,6 @@ const Users = ({ defaultPage }) => {
                   }}
                   onDelete={() => handleDeleteUser(id)}
                 />
-                {/* <div className="user-card">
-                  <Overlay className="is-confirm" isActive>
-                    <div className="text-align-center text-color-white">
-                      <div className="margin-bottom-16">
-                        delete
-                        <br />
-                        <span className="text-size-24">
-                          {first_name} {last_name}?
-                        </span>
-                      </div>
-                      <List type="horizontal">
-                        <ListItem>
-                          <Button theme="red" size="md" shape="pill">
-                            delete
-                          </Button>
-                        </ListItem>
-                        <ListItem>
-                          <Button theme="white" size="md" shape="pill">
-                            cancel
-                          </Button>
-                        </ListItem>
-                      </List>
-                    </div>
-                  </Overlay>
-                  <img
-                    className="user-card__avatar"
-                    src={avatar}
-                    alt={`${first_name} ${last_name}`}
-                  />
-                  <div className="user-card__name">
-                    {first_name} {last_name}
-                  </div>
-                  <div className="user-card__info">
-                    <Link href={`mailto:${email}`}>{email}</Link>
-                  </div>
-                  <List type="horizontal" className="user-card__actions">
-                    <ListItem>
-                      <Button
-                        theme="blue"
-                        shape="pill"
-                        size="md"
-                        onClick={() => {
-                          setShowEditModal(true);
-                          setEditId(id);
-                        }}
-                      >
-                        edit
-                      </Button>
-                    </ListItem>
-                    <ListItem>
-                      <Button
-                        theme="blue-gray"
-                        shape="pill"
-                        size="md"
-                        onClick={() => handleDeleteUser(id)}
-                      >
-                        delete
-                      </Button>
-                    </ListItem>
-                  </List>
-                </div> */}
               </Col>
             ),
           )}

@@ -14,6 +14,7 @@ export const useGetUsers = (defaultPage) => {
 
 export const useDeleteUser = () => {
   const [deleteUser, { loading: deleteInProgress }] = useMutation(DELETE_USER, {
+    // refetchQueries: [{ query: GET_USERS, variables: { page: 1 } }],
     update(cache, { data }) {
       cache.evict({
         id: cache.identify({
