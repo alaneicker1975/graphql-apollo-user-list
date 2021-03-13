@@ -40,7 +40,7 @@ const AddUserForm = () => {
         )}
         <div className="margin-top-16">
           <Button theme="blue" shape="pill" onClick={handleSubmit}>
-            save
+            save user
           </Button>
         </div>
       </form>

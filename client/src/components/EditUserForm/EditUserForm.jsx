@@ -52,7 +52,7 @@ const EditUserForm = () => {
         )}
         <div className="margin-top-16">
           <Button theme="blue" shape="pill" onClick={handleSubmit}>
-            save
+            save changes
           </Button>
         </div>
       </form>
