@@ -3,7 +3,7 @@ import { Modal } from '@atomikui/core';
 import EditUserForm from '../EditUserForm';
 import { useAppContext } from '../../context/AppContext';
 
-const EditUserModal = () => {
+const UserFormModal = () => {
   const { showEditModal, setShowEditModal } = useAppContext();
 
   return (
@@ -18,4 +18,4 @@ const EditUserModal = () => {
   );
 };
 
-export default EditUserModal;
+export default UserFormModal;

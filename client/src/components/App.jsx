@@ -2,7 +2,7 @@ import React from 'react';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import Users from './Users';
 import Loader from './Loader';
-import EditUserModal from './EditUserModal';
+import UserFormModal from './UserFormModal';
 import AppProvider from '../context/AppContext';
 
 import '@atomikui/core/dist/styles/main.min.css';
@@ -17,7 +17,7 @@ const App = () => (
     <AppProvider>
       <main>
         <Users />
-        <EditUserModal />
+        <UserFormModal />
         <Loader />
       </main>
     </AppProvider>
