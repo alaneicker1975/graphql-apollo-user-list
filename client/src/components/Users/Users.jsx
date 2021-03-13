@@ -33,7 +33,7 @@ const Users = () => {
   return (
     <div className="user-container">
       <div className="flex flex--align-middle">
-        <div style={{ flex: 1 }}>
+        <div className="flex flex--hr-12 flex__item--grow">
           <Pagination
             totalPages={total_pages}
             currentPage={page}
