@@ -40,10 +40,11 @@ const EditUserForm = () => {
           (key) =>
             !key.match(/(__typename|id)/) && (
               <FormField
+                id={key}
                 key={key}
                 className="margin-bottom-8"
                 name={key}
-                id={key}
+                label={key.replace('_', ' ')}
                 defaultValue={userData[key]}
                 onChange={handleChange}
               />
