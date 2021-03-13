@@ -4,7 +4,7 @@ import { useAppContext } from '../../context/AppContext';
 import { useAddUser } from './hooks';
 
 const AddUserForm = () => {
-  const { setShowAddForm } = useAppContext();
+  const { setModal } = useAppContext();
   const { userData, setUserData } = useAddUser();
 
   const handleChange = (e) => {
@@ -18,7 +18,7 @@ const AddUserForm = () => {
 
   const handleSubmit = () => {
     // addUser({ variables: userData });
-    // setModal(false);
+    // setModal({ isOpen: false });
   };
 
   return (
