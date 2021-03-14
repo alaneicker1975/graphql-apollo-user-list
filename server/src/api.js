@@ -1,9 +1,12 @@
 const { RESTDataSource } = require('apollo-datasource-rest');
+const dotenv = require('dotenv-flow');
+
+dotenv.config();
 
 class UserAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = 'https://reqres.in/api';
+    this.baseURL = process.env.BASE_URL;
   }
 
   async getUsers(page = 1) {
@@ -20,7 +23,7 @@ class UserAPI extends RESTDataSource {
 
   async updateUser(user) {
     const { id, ...body } = user;
-    return this.patch(`/users`, { id, body });
+    return this.patch(`/users/${id}`, body);
   }
 
   async deleteUser(id) {
