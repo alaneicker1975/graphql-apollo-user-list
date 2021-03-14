@@ -12,31 +12,3 @@
     overflow: auto;
   }
 }
-
-.user-card {
-  backdrop-filter: blur(15px);
-  background: rgba(255, 255, 255, 0.45);
-  border-radius: rem(10);
-  margin-bottom: rem(16);
-  overflow: hidden;
-  padding: rem(16);
-  text-align: center;
-
-  &__name {
-    font-size: rem(28);
-    font-weight: $font-medium;
-  }
-
-  &__avatar {
-    border-radius: 50%;
-    height: rem(85);
-    width: rem(85);
-  }
-
-  &__actions {
-    border-top: rem(1) solid rgba(255, 255, 255, 0.6);
-    margin-top: rem(16);
-    padding-top: rem(16);
-    text-align: center;
-  }
-}
