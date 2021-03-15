@@ -18,6 +18,7 @@ const Pagination = () => {
           value={String(currentPage)}
           onChange={(e) => setCurrentPage(+e.target.value)}
           options={options}
+          aria-label="select page"
         />
       </List>
     </>
