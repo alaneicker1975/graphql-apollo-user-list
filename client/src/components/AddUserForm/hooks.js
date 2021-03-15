@@ -31,7 +31,7 @@ export const useAddUser = () => {
 
       const query = GET_USERS;
 
-      const variables = { page: nextPage, limit: perPageLimit };
+      const variables = { page: nextPage || currentPage, limit: perPageLimit };
       const data = cache.readQuery({ query, variables });
 
       const newData = {
