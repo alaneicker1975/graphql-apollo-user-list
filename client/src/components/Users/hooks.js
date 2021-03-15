@@ -1,10 +1,16 @@
+import { useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_USERS } from './queries';
 import { DELETE_USER } from './mutations';
 import { useAppContext } from '../../context/AppContext';
 
 export const useGetUsers = () => {
-  const { currentPage, perPageLimit } = useAppContext();
+  const {
+    currentPage,
+    perPageLimit,
+    totalPages,
+    setTotalPages,
+  } = useAppContext();
 
   const { loading, error, data } = useQuery(GET_USERS, {
     variables: {
@@ -12,6 +18,12 @@ export const useGetUsers = () => {
       limit: perPageLimit,
     },
   });
+
+  useEffect(() => {
+    if (!loading) {
+      setTotalPages(data.users.total_pages);
+    }
+  }, [loading, data, setTotalPages]);
 
   return { loading, error, data };
 };

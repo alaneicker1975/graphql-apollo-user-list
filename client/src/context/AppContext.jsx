@@ -6,6 +6,7 @@ const AppContext = createContext({});
 export const useAppContext = () => useContext(AppContext);
 
 const AppProvider = ({ children }) => {
+  const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [perPageLimit, setPerPageLimit] = useState(6);
   const [itemCount, setItemCount] = useState(0);
@@ -16,6 +17,8 @@ const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
+        totalPages,
+        setTotalPages,
         currentPage,
         setCurrentPage,
         perPageLimit,
