@@ -6,7 +6,7 @@ const Pagination = () => {
   const { currentPage, setCurrentPage, totalPages } = useAppContext();
 
   const options = Array.from(Array(totalPages).keys()).map((key) => {
-    const page = String(key + 1);
+    const page = (key + 1).toString();
     return { text: `Page ${page}`, value: page };
   });
 
@@ -15,7 +15,7 @@ const Pagination = () => {
       <List type="horizontal">
         <Dropdown
           style={{ width: 120 }}
-          value={String(currentPage)}
+          value={currentPage.toString()}
           onChange={(e) => setCurrentPage(+e.target.value)}
           options={options}
           aria-label="select page"
