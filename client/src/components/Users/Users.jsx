@@ -7,12 +7,11 @@ import { useGetUsers, useDeleteUser } from './hooks';
 import { useAppContext } from '../../context/AppContext';
 
 const Users = () => {
-  const { setModal, setEditId, setShowLoader } = useAppContext();
+  const { setModal, setEditId } = useAppContext();
   const { loading, error, data } = useGetUsers();
   const { deleteUser } = useDeleteUser();
 
   const handleDeleteUser = (id) => {
-    setShowLoader(true);
     deleteUser({ variables: { id } });
   };
 

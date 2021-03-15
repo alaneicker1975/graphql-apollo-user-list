@@ -44,6 +44,7 @@ export const useDeleteUser = () => {
   });
 
   useEffect(() => {
+    alert(loading);
     setShowLoader(!!loading);
   }, [loading, setShowLoader]);
 
