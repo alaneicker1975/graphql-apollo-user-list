@@ -22,21 +22,23 @@ export const useAddUser = () => {
 
   const [addUser] = useMutation(ADD_USER, {
     update: (cache, { data: { user } }) => {
+      let nextPage;
+
       if (itemCount === perPageLimit) {
-        cache.reset();
-        setCurrentPage(currentPage + (totalPages - currentPage));
-      } else {
-        const query = GET_USERS;
-        const variables = { page: currentPage, limit: perPageLimit };
-
-        const data = cache.readQuery({ query, variables });
-
-        const newData = {
-          users: { ...data.users, data: [...data.users.data, user.data] },
-        };
-
-        cache.writeQuery({ query, variables, data: newData });
+        nextPage = currentPage + (totalPages - currentPage);
+        setCurrentPage(nextPage);
       }
+
+      const query = GET_USERS;
+
+      const variables = { page: nextPage, limit: perPageLimit };
+      const data = cache.readQuery({ query, variables });
+
+      const newData = {
+        users: { ...data.users, data: [...data.users.data, user.data] },
+      };
+
+      cache.writeQuery({ query, variables, data: newData });
     },
   });
 
