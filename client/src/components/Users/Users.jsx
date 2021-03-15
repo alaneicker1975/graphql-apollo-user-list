@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Alert, Button } from '@atomikui/core';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import Pagination from '../Pagination';
