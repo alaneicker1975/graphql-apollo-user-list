@@ -8,6 +8,7 @@ export const useAppContext = () => useContext(AppContext);
 const AppProvider = ({ children }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [perPageLimit, setPerPageLimit] = useState(6);
+  const [itemCount, setItemCount] = useState(0);
   const [modal, setModal] = useState({ isOpen: false, type: 'add' });
   const [showLoader, setShowLoader] = useState(false);
   const [editId, setEditId] = useState();
@@ -19,6 +20,8 @@ const AppProvider = ({ children }) => {
         setCurrentPage,
         perPageLimit,
         setPerPageLimit,
+        itemCount,
+        setItemCount,
         showLoader,
         setShowLoader,
         modal,
