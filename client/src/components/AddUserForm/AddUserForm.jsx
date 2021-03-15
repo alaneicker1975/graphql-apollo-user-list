@@ -5,7 +5,7 @@ import { useAddUser } from './hooks';
 
 const AddUserForm = () => {
   const { setModal } = useAppContext();
-  const { userData, setUserData } = useAddUser();
+  const { addUser, userData, setUserData } = useAddUser();
 
   const handleChange = (e) => {
     const { name } = e.target;
@@ -17,8 +17,8 @@ const AddUserForm = () => {
   };
 
   const handleSubmit = () => {
-    // addUser({ variables: userData });
-    // setModal({ isOpen: false });
+    addUser({ variables: userData });
+    setModal({ isOpen: false });
   };
 
   return (
@@ -33,7 +33,7 @@ const AddUserForm = () => {
                 className="margin-bottom-8"
                 name={key}
                 label={key.replace('_', ' ')}
-                value={userData[key]}
+                defaultValue={userData[key]}
                 onChange={handleChange}
               />
             ),

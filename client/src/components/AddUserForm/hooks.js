@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
+import { ADD_USER } from './mutations';
+import { GET_USERS } from '../Users/queries';
 
 export const useAddUser = () => {
   const [userData, setUserData] = useState({
@@ -9,7 +11,13 @@ export const useAddUser = () => {
     avatar: '',
   });
 
-  // const [addUser] = useMutation(ADD_USER);
+  const [addUser] = useMutation(ADD_USER, {
+    update: (cache, { data: { user } }) => {
+      const { users } = cache.readQuery({ query: GET_USERS });
+      users.data = [...users.data, user];
+      cache.writeQuery({ query: GET_USERS }, users);
+    },
+  });
 
-  return { userData, setUserData };
+  return { addUser, userData, setUserData };
 };

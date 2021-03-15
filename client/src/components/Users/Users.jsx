@@ -8,7 +8,7 @@ import { useAppContext } from '../../context/AppContext';
 
 const Users = () => {
   const { setModal, setEditId, setShowLoader } = useAppContext();
-  const { loading, error, data, fetchMore } = useGetUsers();
+  const { loading, error, data } = useGetUsers();
   const { deleteUser, deleteInProgress } = useDeleteUser();
 
   const handleDeleteUser = (id) => {

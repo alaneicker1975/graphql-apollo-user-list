@@ -2,7 +2,7 @@ const { gql } = require('apollo-server');
 
 const typeDefs = gql`
   type Query {
-    users(page: Int): AllUsers!
+    users(page: Int, limit: Int): AllUsers!
     user(id: ID!): SingleUser!
   }
 
@@ -13,6 +13,13 @@ const typeDefs = gql`
       last_name: String
       email: String
       avatar: String
+    ): SingleUser!
+
+    addUser(
+      first_name: String!
+      last_name: String!
+      email: String!
+      avatar: String!
     ): SingleUser!
 
     deleteUser(id: ID!): DeleteResponse

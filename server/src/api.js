@@ -9,7 +9,7 @@ class UserAPI extends RESTDataSource {
     this.baseURL = process.env.BASE_URL;
   }
 
-  async getUsers(page = 1) {
+  async getUsers(page = 1, limit = 10) {
     return this.get('/users', { page });
   }
 
