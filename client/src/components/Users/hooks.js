@@ -8,8 +8,8 @@ export const useGetUsers = () => {
   const {
     currentPage,
     perPageLimit,
-    totalPages,
     setTotalPages,
+    setItemCount,
   } = useAppContext();
 
   const { loading, error, data } = useQuery(GET_USERS, {
@@ -21,15 +21,18 @@ export const useGetUsers = () => {
 
   useEffect(() => {
     if (!loading) {
+      setItemCount(data.users.data.length);
       setTotalPages(data.users.total_pages);
     }
-  }, [loading, data, setTotalPages]);
+  }, [loading, data, setItemCount, setTotalPages]);
 
   return { loading, error, data };
 };
 
 export const useDeleteUser = () => {
-  const [deleteUser, { loading: deleteInProgress }] = useMutation(DELETE_USER, {
+  const { setShowLoader } = useAppContext();
+
+  const [deleteUser, { loading }] = useMutation(DELETE_USER, {
     update(cache, { data }) {
       cache.evict({
         id: cache.identify({
@@ -40,5 +43,9 @@ export const useDeleteUser = () => {
     },
   });
 
-  return { deleteUser, deleteInProgress };
+  useEffect(() => {
+    setShowLoader(!!loading);
+  }, [loading, setShowLoader]);
+
+  return { deleteUser };
 };

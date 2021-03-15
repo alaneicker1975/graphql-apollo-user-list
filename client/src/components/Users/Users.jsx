@@ -7,22 +7,14 @@ import { useGetUsers, useDeleteUser } from './hooks';
 import { useAppContext } from '../../context/AppContext';
 
 const Users = () => {
-  const { setModal, setEditId, setShowLoader, setItemCount } = useAppContext();
+  const { setModal, setEditId, setShowLoader } = useAppContext();
   const { loading, error, data } = useGetUsers();
-  const { deleteUser, deleteInProgress } = useDeleteUser();
+  const { deleteUser } = useDeleteUser();
 
   const handleDeleteUser = (id) => {
     setShowLoader(true);
     deleteUser({ variables: { id } });
   };
-
-  useEffect(() => {
-    setShowLoader(!!loading || !!deleteInProgress);
-  }, [loading, deleteInProgress, setShowLoader]);
-
-  useEffect(() => {
-    setItemCount(data?.users?.data.length);
-  }, [data, setItemCount]);
 
   if (loading) {
     return null;
