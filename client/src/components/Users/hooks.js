@@ -6,19 +6,18 @@ import { useAppContext } from '../../context/AppContext';
 export const useGetUsers = () => {
   const { currentPage, perPageLimit } = useAppContext();
 
-  const { loading, error, data, fetchMore } = useQuery(GET_USERS, {
+  const { loading, error, data } = useQuery(GET_USERS, {
     variables: {
       page: currentPage,
       limit: perPageLimit,
     },
   });
 
-  return { loading, error, data, fetchMore };
+  return { loading, error, data };
 };
 
 export const useDeleteUser = () => {
   const [deleteUser, { loading: deleteInProgress }] = useMutation(DELETE_USER, {
-    // refetchQueries: [{ query: GET_USERS, variables: { page: 1 } }],
     update(cache, { data }) {
       cache.evict({
         id: cache.identify({
