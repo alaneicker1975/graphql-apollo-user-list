@@ -23,13 +23,13 @@ const Users = () => {
     return <Alert theme="error">Error: Could not load users</Alert>;
   }
 
-  const { page, total_pages, data: userData } = data.users;
+  const { data: userData } = data.users;
 
   return (
     <div className="user-container">
       <div className="flex flex--align-middle">
         <div className="flex flex--hr-12 flex__item--grow">
-          <Pagination totalPages={total_pages} currentPage={page} />
+          <Pagination />
         </div>
         <div>
           <Button
