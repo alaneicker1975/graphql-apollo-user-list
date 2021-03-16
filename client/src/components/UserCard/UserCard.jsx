@@ -54,14 +54,13 @@ const UserCard = ({
           </List>
         </div>
       </Overlay>
-      {avatar && (
+      {avatar ? (
         <img
           className="user-card__avatar"
           src={avatar}
           alt={fullName(firstName, lastName)}
         />
-      )}
-      {!avatar && (
+      ) : (
         <Icon
           style={{ height: 85, width: 85 }}
           icon={faUserCircle}
