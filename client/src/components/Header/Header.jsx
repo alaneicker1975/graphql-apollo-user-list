@@ -7,13 +7,13 @@ const Header = () => {
   const { setModal } = useAppContext();
 
   return (
-    <header className="flex flex--align-middle padding-left-8 padding-right-8 margin-bottom-16">
+    <header className="header">
       <div className="flex flex--hr-12 flex__item--grow">
         <Pagination />
       </div>
       <div>
         <Button
-          theme="blue"
+          theme="cyan"
           shape="pill"
           onClick={() => setModal({ isOpen: true, type: 'add' })}
         >

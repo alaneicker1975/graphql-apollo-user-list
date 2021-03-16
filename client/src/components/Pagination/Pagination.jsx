@@ -23,7 +23,7 @@ const Pagination = () => {
             height: 40,
             padding: 0,
           }}
-          theme={page === currentPage ? 'sky-blue' : 'white'}
+          theme={page === currentPage ? 'cyan' : 'white'}
           shape="pill"
           size="md"
           onClick={() => setCurrentPage(page)}
