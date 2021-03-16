@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from './mutations';
 import { GET_USERS } from '../Users/queries';
@@ -11,6 +11,7 @@ export const useAddUser = () => {
     perPageLimit,
     itemCount,
     setCurrentPage,
+    setShowLoader,
   } = useAppContext();
 
   const [userData, setUserData] = useState({
@@ -39,6 +40,8 @@ export const useAddUser = () => {
       };
 
       cache.writeQuery({ query, variables, data: newData });
+
+      setShowLoader(false);
     },
   });
 
