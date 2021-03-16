@@ -26,7 +26,7 @@ const EditUserForm = () => {
     if (!loading) {
       setUserData(data.user.data);
     }
-  }, [loading, data]);
+  }, [loading, data, setUserData]);
 
   if (error) {
     return <Alert theme="error">Error: Could not load form data</Alert>;
