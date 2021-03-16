@@ -8,6 +8,7 @@ export const useGetUsers = () => {
   const {
     currentPage,
     perPageLimit,
+    setShowLoader,
     setTotalPages,
     setItemCount,
   } = useAppContext();
@@ -25,6 +26,10 @@ export const useGetUsers = () => {
       setTotalPages(data.users.total_pages);
     }
   }, [loading, data, setItemCount, setTotalPages]);
+
+  useEffect(() => {
+    setShowLoader(!!loading);
+  }, [loading, setShowLoader]);
 
   return { loading, error, data };
 };
