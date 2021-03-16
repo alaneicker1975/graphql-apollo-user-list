@@ -16,8 +16,8 @@ export const client = new ApolloClient({
 const App = () => (
   <ApolloProvider client={client}>
     <AppProvider>
+      <Header />
       <main>
-        <Header />
         <Users />
         <UserFormModal />
         <Loader />

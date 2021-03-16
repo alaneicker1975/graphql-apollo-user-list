@@ -26,7 +26,7 @@ const Users = () => {
     return <Alert theme="error">Error: Could not load users</Alert>;
   }
 
-  const { data: userData } = data.users;
+  const { data: userData } = data?.users;
 
   return (
     <div className="user-container">
@@ -39,7 +39,7 @@ const Users = () => {
                   firstName={first_name}
                   lastName={last_name}
                   email={email}
-                  avatar={avatar}
+                  {...(avatar && { avatar })}
                   onUpdate={() => {
                     setModal({ isOpen: true, type: 'edit' });
                     setEditId(id);

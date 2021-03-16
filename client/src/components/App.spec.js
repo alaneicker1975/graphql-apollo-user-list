@@ -1,4 +1,4 @@
-import generateAccessibilityTests from '../../jest/generateAccessibilityTests';
+import generateAccessibilityTests from '../../../jest/generateAccessibilityTests';
 
 const component = 'App';
 

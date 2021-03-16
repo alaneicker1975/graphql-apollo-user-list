@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { Overlay, Button, List, ListItem, Link } from '@atomikui/core';
 
 const fullName = (firstName, lastName) => `${firstName} ${lastName}`;
@@ -52,11 +54,20 @@ const UserCard = ({
           </List>
         </div>
       </Overlay>
-      <img
-        className="user-card__avatar"
-        src={avatar}
-        alt={fullName(firstName, lastName)}
-      />
+      {avatar && (
+        <img
+          className="user-card__avatar"
+          src={avatar}
+          alt={fullName(firstName, lastName)}
+        />
+      )}
+      {!avatar && (
+        <Icon
+          style={{ height: 85, width: 85 }}
+          icon={faUserCircle}
+          color="#222"
+        />
+      )}
       <div className="user-card__name">{fullName(firstName, lastName)}</div>
       <div className="user-card__info">
         <Link href={`mailto:${email}`}>{email}</Link>
@@ -97,8 +108,7 @@ UserCard.propTypes = {
 };
 
 UserCard.defaultProps = {
-  avatar:
-    'https://library.kissclipart.com/20180922/eve/kissclipart-icon-full-name-clipart-computer-icons-avatar-icon-f6cf26ff2213f36e.jpg',
+  avatar: null,
 };
 
 export default UserCard;

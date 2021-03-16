@@ -7,7 +7,7 @@ const Header = () => {
   const { setModal } = useAppContext();
 
   return (
-    <div className="flex flex--align-middle padding-left-8 padding-right-8 margin-bottom-16">
+    <header className="flex flex--align-middle padding-left-8 padding-right-8 margin-bottom-16">
       <div className="flex flex--hr-12 flex__item--grow">
         <Pagination />
       </div>
@@ -20,7 +20,7 @@ const Header = () => {
           add user
         </Button>
       </div>
-    </div>
+    </header>
   );
 };
 

@@ -16,7 +16,7 @@ body {
 }
 
 main {
-  max-width: rem(1024);
+  max-width: $breakpoint-large;
 }
 
 a {
