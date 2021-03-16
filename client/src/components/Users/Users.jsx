@@ -34,7 +34,7 @@ const Users = () => {
         <Row>
           {userData.map(
             ({ id, first_name, last_name, email, avatar }, index) => (
-              <Col md={4} key={`user-${index + 1}`}>
+              <Col sm={6} md={4} key={`user-${index + 1}`}>
                 <UserCard
                   firstName={first_name}
                   lastName={last_name}
