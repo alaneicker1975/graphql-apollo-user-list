@@ -11,7 +11,7 @@ export const useAddUser = () => {
     perPageLimit,
     itemCount,
     setCurrentPage,
-    setShowLoader,
+    setModal,
   } = useAppContext();
 
   const [userData, setUserData] = useState({
@@ -21,7 +21,9 @@ export const useAddUser = () => {
     avatar: '',
   });
 
-  const [addUser] = useMutation(ADD_USER, {
+  const [addUser, { loading: savingUser }] = useMutation(ADD_USER, {
+    onCompleted: () => setModal({ isOpen: false }),
+    onError: () => setModal({ isOpen: false }),
     update: (cache, { data: { user } }) => {
       let nextPage;
 
@@ -40,10 +42,8 @@ export const useAddUser = () => {
       };
 
       cache.writeQuery({ query, variables, data: newData });
-
-      setShowLoader(false);
     },
   });
 
-  return { addUser, userData, setUserData };
+  return { addUser, savingUser, userData, setUserData };
 };

@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
-import { FormField, Button } from '@atomikui/core';
-import { useAppContext } from '../../context/AppContext';
+import React from 'react';
+import { FormField, Button, Overlay, Spinner } from '@atomikui/core';
 import { useAddUser } from './hooks';
 
 const AddUserForm = () => {
-  const { setShowLoader, setModal } = useAppContext();
-  const { addUser, userData, setUserData } = useAddUser();
+  const { addUser, savingUser, userData, setUserData } = useAddUser();
 
   const handleChange = (e) => {
     const { name } = e.target;
@@ -17,9 +15,7 @@ const AddUserForm = () => {
   };
 
   const handleSubmit = () => {
-    setShowLoader(true);
     addUser({ variables: userData });
-    setModal({ isOpen: false });
   };
 
   return (
@@ -45,6 +41,9 @@ const AddUserForm = () => {
           </Button>
         </div>
       </form>
+      <Overlay className="is-modal-overlay" theme="white" isActive={savingUser}>
+        <Spinner size="xlg" theme="blue" />
+      </Overlay>
     </>
   );
 };

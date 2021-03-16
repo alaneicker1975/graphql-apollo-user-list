@@ -8,15 +8,15 @@ import { useAppContext } from '../../context/AppContext';
 const Users = () => {
   const { setModal, setEditId, setShowLoader } = useAppContext();
   const { loading, error, data } = useGetUsers();
-  const { deleteUser, deleteInProgress } = useDeleteUser();
+  const { deleteUser, deletingUser } = useDeleteUser();
 
   const handleDeleteUser = (id) => {
     deleteUser({ variables: { id } });
   };
 
   useEffect(() => {
-    setShowLoader(!!loading || !!deleteInProgress);
-  }, [loading, setShowLoader, deleteInProgress]);
+    setShowLoader(!!loading || !!deletingUser);
+  }, [loading, setShowLoader, deletingUser]);
 
   if (loading) {
     return null;

@@ -11,6 +11,7 @@ export const useGetUsers = () => {
     setShowLoader,
     setTotalPages,
     setItemCount,
+    setModal,
   } = useAppContext();
 
   const { loading, error, data } = useQuery(GET_USERS, {
@@ -31,7 +32,8 @@ export const useGetUsers = () => {
 };
 
 export const useDeleteUser = () => {
-  const [deleteUser, { loading: deleteInProgress }] = useMutation(DELETE_USER, {
+  const [deleteUser, { loading: deletingUser }] = useMutation(DELETE_USER, {
+    onCompleted: () => setModal({ isOpen: false }),
     update(cache, { data }) {
       cache.evict({
         id: cache.identify({
@@ -42,5 +44,5 @@ export const useDeleteUser = () => {
     },
   });
 
-  return { deleteInProgress, deleteUser };
+  return { deletingUser, deleteUser };
 };

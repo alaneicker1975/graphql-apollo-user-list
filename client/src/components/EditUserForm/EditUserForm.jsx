@@ -4,10 +4,10 @@ import { useAppContext } from '../../context/AppContext';
 import { useGetUser, useUpdateUser } from './hooks';
 
 const EditUserForm = () => {
-  const { editId, setModal } = useAppContext();
+  const { editId } = useAppContext();
 
   const { loading, error, data } = useGetUser(editId);
-  const { updateUser, userData, setUserData } = useUpdateUser();
+  const { updateUser, updatingUser, userData, setUserData } = useUpdateUser();
 
   const handleChange = (e) => {
     const { name } = e.target;
@@ -20,7 +20,6 @@ const EditUserForm = () => {
 
   const handleSubmit = () => {
     updateUser({ variables: userData });
-    setModal(false);
   };
 
   useEffect(() => {
@@ -56,7 +55,11 @@ const EditUserForm = () => {
           </Button>
         </div>
       </form>
-      <Overlay className="is-modal-overlay" theme="white" isActive={loading}>
+      <Overlay
+        className="is-modal-overlay"
+        theme="white"
+        isActive={loading || updatingUser}
+      >
         <Spinner size="xlg" theme="blue" />
       </Overlay>
     </>
