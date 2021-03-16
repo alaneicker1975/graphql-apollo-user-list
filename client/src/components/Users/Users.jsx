@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Alert } from '@atomikui/core';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import UserCard from '../UserCard';
@@ -6,13 +6,17 @@ import { useGetUsers, useDeleteUser } from './hooks';
 import { useAppContext } from '../../context/AppContext';
 
 const Users = () => {
-  const { setModal, setEditId } = useAppContext();
+  const { setModal, setEditId, setShowLoader } = useAppContext();
   const { loading, error, data } = useGetUsers();
   const { deleteUser } = useDeleteUser();
 
   const handleDeleteUser = (id) => {
     deleteUser({ variables: { id } });
   };
+
+  useEffect(() => {
+    setShowLoader(!!loading);
+  }, [loading, setShowLoader]);
 
   if (loading) {
     return null;

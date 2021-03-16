@@ -25,18 +25,12 @@ export const useGetUsers = () => {
       setItemCount(data.users.data.length);
       setTotalPages(data.users.total_pages);
     }
-  }, [loading, data, setItemCount, setTotalPages]);
-
-  useEffect(() => {
-    setShowLoader(!!loading);
-  }, [loading, setShowLoader]);
+  }, [loading, data, setItemCount, setShowLoader, setTotalPages]);
 
   return { loading, error, data };
 };
 
 export const useDeleteUser = () => {
-  const { setShowLoader } = useAppContext();
-
   const [deleteUser, { loading }] = useMutation(DELETE_USER, {
     update(cache, { data }) {
       cache.evict({
@@ -48,9 +42,5 @@ export const useDeleteUser = () => {
     },
   });
 
-  useEffect(() => {
-    setShowLoader(!!loading);
-  }, [loading, setShowLoader]);
-
-  return { deleteUser };
+  return { loading, deleteUser };
 };
