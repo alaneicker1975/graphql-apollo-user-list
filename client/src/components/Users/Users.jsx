@@ -1,7 +1,6 @@
 import React from 'react';
-import { Alert, Button } from '@atomikui/core';
+import { Alert } from '@atomikui/core';
 import { Grid, Row, Col } from 'react-flexbox-grid';
-import Pagination from '../Pagination';
 import UserCard from '../UserCard';
 import { useGetUsers, useDeleteUser } from './hooks';
 import { useAppContext } from '../../context/AppContext';
@@ -27,20 +26,6 @@ const Users = () => {
 
   return (
     <div className="user-container">
-      <div className="flex flex--align-middle">
-        <div className="flex flex--hr-12 flex__item--grow">
-          <Pagination />
-        </div>
-        <div>
-          <Button
-            theme="blue"
-            shape="pill"
-            onClick={() => setModal({ isOpen: true, type: 'add' })}
-          >
-            add user
-          </Button>
-        </div>
-      </div>
       <Grid>
         <Row>
           {userData.map(

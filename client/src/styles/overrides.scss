@@ -31,3 +31,11 @@
     backdrop-filter: blur(8px);
   }
 }
+
+.atomikui-dropdown {
+  .atomikui-dropdown__select__menu {
+    & > :first-child {
+      display: none;
+    }
+  }
+}
