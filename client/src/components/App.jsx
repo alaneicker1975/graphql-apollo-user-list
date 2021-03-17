@@ -17,12 +17,11 @@ const App = () => (
   <ApolloProvider client={client}>
     <AppProvider>
       <Header />
-      <div className="margin-bottom-16" />
-      <main>
+      <main className="padding-top-16">
         <Users />
-        <UserFormModal />
-        <Loader />
       </main>
+      <UserFormModal />
+      <Loader />
     </AppProvider>
   </ApolloProvider>
 );
