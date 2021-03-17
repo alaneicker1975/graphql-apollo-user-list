@@ -3,11 +3,9 @@ import { useQuery, useMutation } from '@apollo/client';
 import { GET_USER } from './queries';
 import { UPDATE_USER } from './mutations';
 
-export const useGetUser = (editId) =>
+export const useGetUser = (id) =>
   useQuery(GET_USER, {
-    variables: {
-      id: editId,
-    },
+    variables: { id },
   });
 
 export const useUpdateUser = ({ onCompleted, onError }) => {
