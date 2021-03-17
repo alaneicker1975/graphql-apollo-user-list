@@ -29,7 +29,20 @@ export const useAddUser = ({ onCompleted, onError }) => {
       if (itemCount === perPageLimit) {
         nextPage = totalPages + 1;
         setCurrentPage(nextPage);
-        cache.reset();
+
+        Array.from(Array(nextPage).keys()).forEach((id) => {
+          cache.modify({
+            id: cache.identify({
+              __typename: 'AllUsers',
+              id,
+            }),
+            fields: {
+              total_pages() {
+                return nextPage;
+              },
+            },
+          });
+        });
       }
 
       const query = GET_USERS;

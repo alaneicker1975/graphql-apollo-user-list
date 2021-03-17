@@ -26,6 +26,7 @@ const typeDefs = gql`
   }
 
   type AllUsers {
+    id: ID
     page: Int
     per_page: Int
     total: Int

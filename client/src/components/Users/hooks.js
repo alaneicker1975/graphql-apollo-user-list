@@ -31,7 +31,12 @@ export const useGetUsers = () => {
 };
 
 export const useDeleteUser = () => {
-  const { itemCount, currentPage, setCurrentPage } = useAppContext();
+  const {
+    itemCount,
+    currentPage,
+    setCurrentPage,
+    totalPages,
+  } = useAppContext();
 
   const [deleteUser, { loading: deletingUser }] = useMutation(DELETE_USER, {
     update(cache, { data }) {
@@ -45,7 +50,20 @@ export const useDeleteUser = () => {
       if (itemCount === 1) {
         const prevPage = currentPage - 1;
         setCurrentPage(prevPage);
-        cache.reset();
+
+        Array.from(Array(totalPages).keys()).forEach((id) => {
+          cache.modify({
+            id: cache.identify({
+              __typename: 'AllUsers',
+              id,
+            }),
+            fields: {
+              total_pages() {
+                return prevPage;
+              },
+            },
+          });
+        });
       }
     },
   });
