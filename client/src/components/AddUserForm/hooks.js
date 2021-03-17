@@ -27,11 +27,7 @@ export const useAddUser = ({ onCompleted, onError }) => {
       let nextPage;
 
       if (itemCount === perPageLimit) {
-        if (currentPage === totalPages) {
-          nextPage = currentPage + 1;
-        } else {
-          nextPage = currentPage + (totalPages - currentPage);
-        }
+        nextPage = totalPages + 1;
         setCurrentPage(nextPage);
       }
 

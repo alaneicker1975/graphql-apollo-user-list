@@ -11,7 +11,6 @@ export const useGetUsers = () => {
     setShowLoader,
     setTotalPages,
     setItemCount,
-    setModal,
   } = useAppContext();
 
   const { loading, error, data } = useQuery(GET_USERS, {
@@ -32,14 +31,20 @@ export const useGetUsers = () => {
 };
 
 export const useDeleteUser = () => {
+  const { itemCount, currentPage, setCurrentPage } = useAppContext();
+
   const [deleteUser, { loading: deletingUser }] = useMutation(DELETE_USER, {
     update(cache, { data }) {
-      cache.evict({
-        id: cache.identify({
-          __typename: 'User',
-          id: data.user.id,
-        }),
-      });
+      if (itemCount === 1) {
+        setCurrentPage(currentPage - 1);
+      } else {
+        cache.evict({
+          id: cache.identify({
+            __typename: 'User',
+            id: data.user.id,
+          }),
+        });
+      }
     },
   });
 
