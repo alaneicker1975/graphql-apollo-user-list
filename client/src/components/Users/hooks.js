@@ -33,7 +33,6 @@ export const useGetUsers = () => {
 
 export const useDeleteUser = () => {
   const [deleteUser, { loading: deletingUser }] = useMutation(DELETE_USER, {
-    onCompleted: () => setModal({ isOpen: false }),
     update(cache, { data }) {
       cache.evict({
         id: cache.identify({

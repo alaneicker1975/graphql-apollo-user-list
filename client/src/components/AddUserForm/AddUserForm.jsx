@@ -1,9 +1,15 @@
 import React from 'react';
 import { FormField, Button, Overlay, Spinner } from '@atomikui/core';
 import { useAddUser } from './hooks';
+import { useAppContext } from '../../context/AppContext';
 
 const AddUserForm = () => {
-  const { addUser, savingUser, userData, setUserData } = useAddUser();
+  const { setModal } = useAppContext();
+
+  const { addUser, savingUser, userData, setUserData } = useAddUser({
+    onCompleted: () => setModal({ isOpen: false }),
+    onError: () => setModal({ isOpen: false }),
+  });
 
   const handleChange = (e) => {
     const { name } = e.target;

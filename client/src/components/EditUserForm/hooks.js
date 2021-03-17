@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_USER } from './queries';
 import { UPDATE_USER } from './mutations';
-import { useAppContext } from '../../context/AppContext';
 
 export const useGetUser = (editId) =>
   useQuery(GET_USER, {
@@ -11,9 +10,7 @@ export const useGetUser = (editId) =>
     },
   });
 
-export const useUpdateUser = () => {
-  const { setModal } = useAppContext();
-
+export const useUpdateUser = ({ onCompleted, onError }) => {
   const [userData, setUserData] = useState({
     first_name: '',
     last_name: '',
@@ -22,8 +19,8 @@ export const useUpdateUser = () => {
   });
 
   const [updateUser, { loading: updatingUser }] = useMutation(UPDATE_USER, {
-    onCompleted: () => setModal({ isOpen: false }),
-    onError: () => setModal({ isOpen: false }),
+    onCompleted,
+    onError,
   });
 
   return { updateUser, updatingUser, userData, setUserData };

@@ -4,10 +4,14 @@ import { useAppContext } from '../../context/AppContext';
 import { useGetUser, useUpdateUser } from './hooks';
 
 const EditUserForm = () => {
-  const { editId } = useAppContext();
+  const { editId, setModal } = useAppContext();
 
   const { loading, error, data } = useGetUser(editId);
-  const { updateUser, updatingUser, userData, setUserData } = useUpdateUser();
+
+  const { updateUser, updatingUser, userData, setUserData } = useUpdateUser({
+    onCompleted: () => setModal({ isOpen: false }),
+    onError: () => setModal({ isOpen: false }),
+  });
 
   const handleChange = (e) => {
     const { name } = e.target;

@@ -1,17 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from './mutations';
 import { GET_USERS } from '../Users/queries';
 import { useAppContext } from '../../context/AppContext';
 
-export const useAddUser = () => {
+export const useAddUser = ({ onCompleted, onError }) => {
   const {
     currentPage,
     totalPages,
     perPageLimit,
     itemCount,
     setCurrentPage,
-    setModal,
   } = useAppContext();
 
   const [userData, setUserData] = useState({
@@ -22,13 +21,17 @@ export const useAddUser = () => {
   });
 
   const [addUser, { loading: savingUser }] = useMutation(ADD_USER, {
-    onCompleted: () => setModal({ isOpen: false }),
-    onError: () => setModal({ isOpen: false }),
+    onCompleted,
+    onError,
     update: (cache, { data: { user } }) => {
       let nextPage;
 
       if (itemCount === perPageLimit) {
-        nextPage = currentPage + (totalPages - currentPage);
+        if (currentPage === totalPages) {
+          nextPage = currentPage + 1;
+        } else {
+          nextPage = currentPage + (totalPages - currentPage);
+        }
         setCurrentPage(nextPage);
       }
 
