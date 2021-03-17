@@ -14,7 +14,7 @@ This demo project showcases how to create a GraphQL back-end and React/Apollo fr
 "graphql": "^15.5.0"
 ```
 
-The back-end relies on a simple REST API ([https://user-api-aeick.herokuapp.com/api](https://user-api-aeick.herokuapp.com/api)). It handles a complete spectrum of CRUD operations, however POST, PUT, PATCH and DELETE methods do not actually update the data source, so data updates do not persist on page reload.
+The back-end relies on a simple REST API ([https://user-api-aeick.herokuapp.com/api](https://user-api-aeick.herokuapp.com/api)) to handles the GET, POST, PUT, PATCH and DELETE requests.
 
 #### Client
 
