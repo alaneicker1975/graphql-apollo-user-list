@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
+import { useAppContext } from '../../context/AppContext';
 import { GET_USERS } from './queries';
 import { DELETE_USER } from './mutations';
-import { useAppContext } from '../../context/AppContext';
 
 export const useGetUsers = () => {
   const {
