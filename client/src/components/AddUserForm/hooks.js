@@ -29,6 +29,7 @@ export const useAddUser = ({ onCompleted, onError }) => {
       if (itemCount === perPageLimit) {
         nextPage = totalPages + 1;
         setCurrentPage(nextPage);
+        cache.reset();
       }
 
       const query = GET_USERS;

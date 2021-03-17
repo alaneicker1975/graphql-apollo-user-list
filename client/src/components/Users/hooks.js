@@ -43,7 +43,9 @@ export const useDeleteUser = () => {
       });
 
       if (itemCount === 1) {
-        setCurrentPage(currentPage - 1);
+        const prevPage = currentPage - 1;
+        setCurrentPage(prevPage);
+        cache.reset();
       }
     },
   });
