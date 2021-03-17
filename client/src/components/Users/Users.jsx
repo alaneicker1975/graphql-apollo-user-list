@@ -41,7 +41,7 @@ const Users = () => {
                   email={email}
                   {...(avatar && { avatar })}
                   onUpdate={() => {
-                    setModal({ isOpen: true, type: 'edit' });
+                    setModal({ isOpen: true, type: 'update' });
                     setEditId(id);
                   }}
                   onDelete={() => handleDeleteUser(id)}

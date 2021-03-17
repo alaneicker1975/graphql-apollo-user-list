@@ -3,7 +3,7 @@ import { FormField, Spinner, Overlay, Alert, Button } from '@atomikui/core';
 import { useAppContext } from '../../context/AppContext';
 import { useGetUser, useUpdateUser } from './hooks';
 
-const EditUserForm = () => {
+const UpdateUserForm = () => {
   const { editId, setModal } = useAppContext();
 
   const { loading, error, data } = useGetUser(editId);
@@ -70,4 +70,4 @@ const EditUserForm = () => {
   );
 };
 
-export default EditUserForm;
+export default UpdateUserForm;
