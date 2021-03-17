@@ -35,15 +35,15 @@ export const useDeleteUser = () => {
 
   const [deleteUser, { loading: deletingUser }] = useMutation(DELETE_USER, {
     update(cache, { data }) {
+      cache.evict({
+        id: cache.identify({
+          __typename: 'User',
+          id: data.user.id,
+        }),
+      });
+
       if (itemCount === 1) {
         setCurrentPage(currentPage - 1);
-      } else {
-        cache.evict({
-          id: cache.identify({
-            __typename: 'User',
-            id: data.user.id,
-          }),
-        });
       }
     },
   });
