@@ -1,4 +1,6 @@
-const { ApolloServer } = require('apollo-server');
+const express = require('express');
+const cors = require('cors');
+const { ApolloServer } = require('apollo-server-express');
 const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
 const UserAPI = require('./api');
@@ -11,10 +13,16 @@ const server = new ApolloServer({
   }),
 });
 
-server.listen().then(() => {
+const app = express();
+
+app.use(cors());
+
+server.applyMiddleware({ app });
+
+app.listen({ port: 4000 }, () => {
   console.log(`
     Server is running
     Listening on port 4000
-    Explore at https://studio.apollographql.com/dev
+    Explore at http://localhost:4000${server.graphqlPath}
   `);
 });

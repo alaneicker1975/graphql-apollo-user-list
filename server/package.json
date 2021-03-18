@@ -14,11 +14,14 @@
     "apollo-datasource": "^0.7.3",
     "apollo-datasource-rest": "^0.10.0",
     "apollo-server": "^2.21.0",
+    "apollo-server-express": "^2.21.1",
     "apollo-server-testing": "^2.21.0",
     "babel-eslint": "^10.1.0",
+    "cors": "^2.8.5",
     "dotenv-flow": "^3.2.0",
     "eslint": "^7.14.0",
     "eslint-config-atomikui": "^0.3.2",
+    "express": "^4.17.1",
     "graphql": "^15.5.0"
   },
   "devDependencies": {

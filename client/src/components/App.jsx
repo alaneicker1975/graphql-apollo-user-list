@@ -9,7 +9,7 @@ import AppProvider from '../context/AppContext';
 import '@atomikui/core/dist/styles/main.min.css';
 
 export const client = new ApolloClient({
-  uri: 'http://localhost:4000',
+  uri: 'http://localhost:4000/graphql',
   cache: new InMemoryCache(),
 });
 
