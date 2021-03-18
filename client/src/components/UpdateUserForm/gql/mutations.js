@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const UPDATE_USER = gql`
+export default gql`
   mutation UpdateUser(
     $id: ID!
     $first_name: String

@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const GET_USER = gql`
+export default gql`
   query User($id: ID!) {
     user(id: $id) {
       data {

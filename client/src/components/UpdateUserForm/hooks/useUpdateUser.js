@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { UPDATE_USER } from '../gql/mutations';
+import { UPDATE_USER } from '../gql';
 
 export default ({ onCompleted, onError }) => {
   const [userData, setUserData] = useState({
