@@ -1,14 +1,8 @@
 import { useState } from 'react';
-import { useQuery, useMutation } from '@apollo/client';
-import { GET_USER } from './queries';
-import { UPDATE_USER } from './mutations';
+import { useMutation } from '@apollo/client';
+import { UPDATE_USER } from '../gql/mutations';
 
-export const useGetUser = (id) =>
-  useQuery(GET_USER, {
-    variables: { id },
-  });
-
-export const useUpdateUser = ({ onCompleted, onError }) => {
+export default ({ onCompleted, onError }) => {
   const [userData, setUserData] = useState({
     first_name: '',
     last_name: '',

@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 
-export const useForm = ({ validationSchema, initialValues, onSubmit }) => {
+export default ({ validationSchema, initialValues, onSubmit }) => {
   const { handleSubmit, handleChange, values, errors, touched } = useFormik({
     initialValues,
     validationSchema,

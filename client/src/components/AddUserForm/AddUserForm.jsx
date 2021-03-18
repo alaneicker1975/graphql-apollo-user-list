@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormField, Button, Overlay, Spinner } from '@atomikui/core';
-import { useAddUser } from './hooks/useAddUser';
-import { useForm } from '../../hooks/useForm';
+import { useAddUser } from './hooks';
+import { useForm } from '../../hooks';
 import { validationSchema, initialValues } from './schema/addUserForm';
 import { useAppContext } from '../../context/AppContext';
 

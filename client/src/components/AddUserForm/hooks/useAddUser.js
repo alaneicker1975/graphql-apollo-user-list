@@ -1,9 +1,9 @@
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../gql/mutations';
+import { ADD_USER } from '../gql';
 import { GET_USERS } from '../../Users/queries';
 import { useAppContext } from '../../../context/AppContext';
 
-export const useAddUser = ({ onCompleted, onError }) => {
+export default ({ onCompleted, onError }) => {
   const {
     currentPage,
     totalPages,
