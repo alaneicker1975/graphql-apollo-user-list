@@ -1,4 +1,5 @@
 import React from 'react';
+import { useFormik } from 'formik';
 import { FormField, Button, Overlay, Spinner } from '@atomikui/core';
 import { useAddUser } from './hooks';
 import { useAppContext } from '../../context/AppContext';
@@ -6,28 +7,24 @@ import { useAppContext } from '../../context/AppContext';
 const AddUserForm = () => {
   const { setModal } = useAppContext();
 
-  const { addUser, savingUser, userData, setUserData } = useAddUser({
+  const { addUser, savingUser, validationSchema, initialValues } = useAddUser({
     onCompleted: () => setModal({ isOpen: false }),
     onError: () => setModal({ isOpen: false }),
   });
 
-  const handleChange = (e) => {
-    const { name } = e.target;
-    const { value } = e.target;
-    setUserData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = () => {
-    addUser({ variables: userData });
-  };
+  const { handleSubmit, handleChange, values, errors, touched } = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit: (data) => {
+      console.log(data);
+      addUser({ variables: data });
+    },
+  });
 
   return (
     <>
-      <form autoComplete="off">
-        {Object.keys(userData).map(
+      <form onSubmit={handleSubmit} autoComplete="off" noValidate>
+        {Object.keys(initialValues).map(
           (key) =>
             !key.match(/(__typename|id)/) && (
               <FormField
@@ -36,7 +33,9 @@ const AddUserForm = () => {
                 className="margin-bottom-8"
                 name={key}
                 label={key.replace('_', ' ')}
-                defaultValue={userData[key]}
+                defaultValue={values[key]}
+                hasError={!!(errors[key] && touched[key])}
+                errorText={errors[key]}
                 onChange={handleChange}
               />
             ),

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import * as yup from 'yup';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from './mutations';
 import { GET_USERS } from '../Users/queries';
@@ -13,12 +13,21 @@ export const useAddUser = ({ onCompleted, onError }) => {
     setCurrentPage,
   } = useAppContext();
 
-  const [userData, setUserData] = useState({
+  const validationSchema = yup.object().shape({
+    first_name: yup.string().required('First name is required'),
+    last_name: yup.string().required('Last name is required'),
+    email: yup
+      .string()
+      .email('Please enter a valid email')
+      .required('Please enter your email'),
+  });
+
+  const initialValues = {
     first_name: '',
     last_name: '',
     email: '',
     avatar: '',
-  });
+  };
 
   const [addUser, { loading: savingUser }] = useMutation(ADD_USER, {
     onCompleted,
@@ -58,5 +67,5 @@ export const useAddUser = ({ onCompleted, onError }) => {
     },
   });
 
-  return { addUser, savingUser, userData, setUserData };
+  return { addUser, savingUser, validationSchema, initialValues };
 };
