@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../mutations';
+import { ADD_USER } from '../gql/mutations';
 import { GET_USERS } from '../../Users/queries';
 import { useAppContext } from '../../../context/AppContext';
 
@@ -12,7 +12,7 @@ export const useAddUser = ({ onCompleted, onError }) => {
     setCurrentPage,
   } = useAppContext();
 
-  const [addUser, { loading: savingUser }] = useMutation(ADD_USER, {
+  const [addUser, { loading: isSavingUser }] = useMutation(ADD_USER, {
     onCompleted,
     onError,
     update: (cache, { data: { user } }) => {
@@ -50,5 +50,5 @@ export const useAddUser = ({ onCompleted, onError }) => {
     },
   });
 
-  return { addUser, savingUser };
+  return { addUser, isSavingUser };
 };

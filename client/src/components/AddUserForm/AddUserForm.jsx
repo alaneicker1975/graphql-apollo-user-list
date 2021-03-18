@@ -2,13 +2,13 @@ import React from 'react';
 import { FormField, Button, Overlay, Spinner } from '@atomikui/core';
 import { useAddUser } from './hooks/useAddUser';
 import { useForm } from '../../hooks/useForm';
-import { validationSchema, initialValues } from './validationSchema';
+import { validationSchema, initialValues } from './schema/addUserForm';
 import { useAppContext } from '../../context/AppContext';
 
 const AddUserForm = () => {
   const { setModal } = useAppContext();
 
-  const { addUser, savingUser } = useAddUser({
+  const { addUser, isSavingUser } = useAddUser({
     onCompleted: () => setModal({ isOpen: false }),
     onError: () => setModal({ isOpen: false }),
   });
@@ -44,7 +44,11 @@ const AddUserForm = () => {
           </Button>
         </div>
       </form>
-      <Overlay className="is-modal-overlay" theme="white" isActive={savingUser}>
+      <Overlay
+        className="is-modal-overlay"
+        theme="white"
+        isActive={isSavingUser}
+      >
         <Spinner size="xlg" theme="blue" />
       </Overlay>
     </>
