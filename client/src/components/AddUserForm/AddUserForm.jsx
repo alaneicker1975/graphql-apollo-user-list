@@ -1,27 +1,28 @@
 import React from 'react';
-import { useFormik } from 'formik';
 import { FormField, Button, Overlay, Spinner } from '@atomikui/core';
-import { useAddUser } from './hooks';
+import { useAddUser } from './hooks/useAddUser';
+import { useForm } from '../../hooks/useForm';
+import { validationSchema, initialValues } from './validationSchema';
 import { useAppContext } from '../../context/AppContext';
 
 const AddUserForm = () => {
   const { setModal } = useAppContext();
 
-  const { addUser, savingUser, validationSchema, initialValues } = useAddUser({
+  const { addUser, savingUser } = useAddUser({
     onCompleted: () => setModal({ isOpen: false }),
     onError: () => setModal({ isOpen: false }),
   });
 
-  const { handleSubmit, handleChange, values, errors, touched } = useFormik({
-    initialValues,
+  const { handleSubmit, handleChange, values, errors, touched } = useForm({
+    onSubmit: addUser,
     validationSchema,
-    onSubmit: (data) => addUser({ variables: data }),
+    initialValues,
   });
 
   return (
     <>
       <form onSubmit={handleSubmit} autoComplete="off" noValidate>
-        {Object.keys(initialValues).map(
+        {Object.keys(values).map(
           (key) =>
             !key.match(/(__typename|id)/) && (
               <FormField
