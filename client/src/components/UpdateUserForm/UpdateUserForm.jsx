@@ -52,7 +52,7 @@ const UpdateUserForm = () => {
                 defaultValue={values[key]}
                 hasError={!!(errors[key] && touched[key])}
                 errorText={errors[key]}
-                onChange={handleChange}
+                onBlur={handleChange}
               />
             ),
         )}
