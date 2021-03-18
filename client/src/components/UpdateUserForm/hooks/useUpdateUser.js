@@ -1,19 +1,14 @@
-import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { UPDATE_USER } from '../gql';
+import { useGetUser } from '.';
 
-export default ({ onCompleted, onError }) => {
-  const [userData, setUserData] = useState({
-    first_name: '',
-    last_name: '',
-    email: '',
-    avatar: '',
-  });
+export default ({ id, onCompleted, onError }) => {
+  const { loading, error, data } = useGetUser(id);
 
-  const [updateUser, { loading: updatingUser }] = useMutation(UPDATE_USER, {
+  const [updateUser, { loading: isUpdatingUser }] = useMutation(UPDATE_USER, {
     onCompleted,
     onError,
   });
 
-  return { updateUser, updatingUser, userData, setUserData };
+  return { loading, error, data, updateUser, isUpdatingUser };
 };
