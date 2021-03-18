@@ -15,10 +15,7 @@ const AddUserForm = () => {
   const { handleSubmit, handleChange, values, errors, touched } = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (data) => {
-      console.log(data);
-      addUser({ variables: data });
-    },
+    onSubmit: (data) => addUser({ variables: data }),
   });
 
   return (
