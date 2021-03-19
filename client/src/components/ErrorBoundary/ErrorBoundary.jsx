@@ -15,7 +15,7 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    console.log(error, errorInfo);
+    console.error(error, errorInfo);
   }
 
   render() {
@@ -28,7 +28,7 @@ class ErrorBoundary extends React.Component {
         <GeneralError>
           <GeneralError.Header>
             <Icon icon={faExclamationTriangle} size="2x" color="#e53935" />
-            <span className="text-weight-bold text-size-36 margin-left-8">
+            <span className="text-weight-bold text-size-30 margin-left-8">
               Oops!
             </span>
           </GeneralError.Header>
