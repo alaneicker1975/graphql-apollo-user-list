@@ -1,5 +1,6 @@
 import React from 'react';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
+import ErrorBoundary from './ErrorBoundary';
 import Header from './Header';
 import Users from './Users';
 import Loader from './Loader';
@@ -14,16 +15,18 @@ export const client = new ApolloClient({
 });
 
 const App = () => (
-  <ApolloProvider client={client}>
-    <AppProvider>
-      <Header />
-      <main className="padding-top-16">
-        <Users />
-      </main>
-      <UserFormModal />
-      <Loader />
-    </AppProvider>
-  </ApolloProvider>
+  <ErrorBoundary>
+    <ApolloProvider client={client}>
+      <AppProvider>
+        <Header />
+        <main className="padding-top-16">
+          <Users />
+        </main>
+        <UserFormModal />
+        <Loader />
+      </AppProvider>
+    </ApolloProvider>
+  </ErrorBoundary>
 );
 
 export default App;
