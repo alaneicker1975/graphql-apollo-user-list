@@ -23,7 +23,7 @@ const Users = () => {
   }
 
   if (error) {
-    return <Alert theme="error">Error: Could not load users</Alert>;
+    throw new Error(error);
   }
 
   const { data: userData } = data?.users;

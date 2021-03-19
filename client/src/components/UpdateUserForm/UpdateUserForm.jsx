@@ -34,7 +34,7 @@ const UpdateUserForm = () => {
   }, [loading, data, setValues]);
 
   if (error) {
-    return <Alert theme="error">Error: Could not load form data</Alert>;
+    throw new Error(error);
   }
 
   return (
