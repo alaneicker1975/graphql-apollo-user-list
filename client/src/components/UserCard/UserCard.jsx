@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { Overlay, Button, List, ListItem, Link } from '@atomikui/core';
+import { Overlay, Button, List, ListItem, Link, Avatar } from '@atomikui/core';
 
 const fullName = (firstName, lastName) => `${firstName} ${lastName}`;
 
@@ -55,7 +55,7 @@ const UserCard = ({
         </div>
       </Overlay>
       {avatar ? (
-        <img
+        <Avatar
           className="user-card__avatar"
           src={avatar}
           alt={fullName(firstName, lastName)}
