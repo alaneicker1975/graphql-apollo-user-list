@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { Overlay, Button, List, ListItem, Link, Avatar } from '@atomikui/core';
+import { Button, List, ListItem, Link, Avatar } from '@atomikui/core';
 import ConfirmationOverlay from '../ConfirmationOverlay';
 
-const fullName = (firstName, lastName) => `${firstName} ${lastName}`;
+const setFullName = (firstName, lastName) => `${firstName} ${lastName}`;
 
 const UserCard = ({
   firstName,
@@ -16,6 +16,7 @@ const UserCard = ({
   onDelete,
 }) => {
   const [showConfirm, setShowConfirm] = useState(false);
+  const fullName = setFullName(firstName, lastName);
 
   return (
     <div className="user-card">
@@ -31,14 +32,10 @@ const UserCard = ({
       >
         delete
         <br />
-        <span className="text-size-24">{fullName(firstName, lastName)}?</span>
+        <span className="text-size-24">{fullName}?</span>
       </ConfirmationOverlay>
       {avatar ? (
-        <Avatar
-          className="user-card__avatar"
-          src={avatar}
-          alt={fullName(firstName, lastName)}
-        />
+        <Avatar className="user-card__avatar" src={avatar} alt={fullName} />
       ) : (
         <Icon
           style={{ height: 85, width: 85 }}
@@ -46,7 +43,7 @@ const UserCard = ({
           color="#222"
         />
       )}
-      <div className="user-card__name">{fullName(firstName, lastName)}</div>
+      <div className="user-card__name">{fullName}</div>
       <div className="user-card__info">
         <Link href={`mailto:${email}`}>{email}</Link>
       </div>
