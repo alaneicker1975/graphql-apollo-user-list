@@ -15,20 +15,20 @@ const UserCard = ({
   onUpdate,
   onDelete,
 }) => {
-  const [showConfirm, setShowConfirm] = useState(false);
+  const [showCancelConfirmation, setShowCancelConfirmation] = useState(false);
   const fullName = setFullName(firstName, lastName);
 
   return (
     <div className="user-card">
       <ConfirmationOverlay
-        isActive={showConfirm}
+        isActive={showCancelConfirmation}
         confirmBtnText="delete"
         cancelBtnText="cancel"
         onConfirm={() => {
           onDelete();
-          setShowConfirm(false);
+          setShowCancelConfirmation(false);
         }}
-        onCancel={() => setShowConfirm(false)}
+        onCancel={() => setShowCancelConfirmation(false)}
       >
         delete
         <br />
@@ -63,7 +63,7 @@ const UserCard = ({
             theme="blue-gray"
             shape="pill"
             size="md"
-            onClick={() => setShowConfirm(true)}
+            onClick={() => setShowCancelConfirmation(true)}
           >
             delete
           </Button>
