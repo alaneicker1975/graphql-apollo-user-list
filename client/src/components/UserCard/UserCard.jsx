@@ -21,13 +21,13 @@ const UserCard = ({
     <div className="user-card">
       <ConfirmationOverlay
         isActive={showConfirm}
+        confirmBtnText="delete"
+        cancelBtnText="cancel"
         onConfirm={() => {
           onDelete();
           setShowConfirm(false);
         }}
         onCancel={() => setShowConfirm(false)}
-        confirmBtnText="delete"
-        cancelBtnText="cancel"
       >
         delete
         <br />
