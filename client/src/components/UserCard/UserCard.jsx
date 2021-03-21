@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { Overlay, Button, List, ListItem, Link, Avatar } from '@atomikui/core';
+import ConfirmationOverlay from '../ConfirmationOverlay';
 
 const fullName = (firstName, lastName) => `${firstName} ${lastName}`;
 
@@ -18,42 +19,20 @@ const UserCard = ({
 
   return (
     <div className="user-card">
-      <Overlay className="is-confirm" isActive={showConfirm}>
-        <div className="text-align-center text-color-white">
-          <div className="margin-bottom-16">
-            delete
-            <br />
-            <span className="text-size-24">
-              {fullName(firstName, lastName)}?
-            </span>
-          </div>
-          <List type="horizontal">
-            <ListItem>
-              <Button
-                theme="red"
-                size="md"
-                shape="pill"
-                onClick={() => {
-                  onDelete();
-                  setShowConfirm(false);
-                }}
-              >
-                delete
-              </Button>
-            </ListItem>
-            <ListItem>
-              <Button
-                theme="white"
-                size="md"
-                shape="pill"
-                onClick={() => setShowConfirm(false)}
-              >
-                cancel
-              </Button>
-            </ListItem>
-          </List>
-        </div>
-      </Overlay>
+      <ConfirmationOverlay
+        isActive={showConfirm}
+        onConfirm={() => {
+          onDelete();
+          setShowConfirm(false);
+        }}
+        onCancel={() => setShowConfirm(false)}
+        confirmBtnText="delete"
+        cancelBtnText="cancel"
+      >
+        delete
+        <br />
+        <span className="text-size-24">{fullName(firstName, lastName)}?</span>
+      </ConfirmationOverlay>
       {avatar ? (
         <Avatar
           className="user-card__avatar"
