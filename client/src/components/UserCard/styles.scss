@@ -11,18 +11,8 @@
   overflow: hidden;
   padding: rem(16);
 
-  &__name {
-    font-size: rem(28);
-    font-weight: $font-medium;
-  }
-
   &__info {
     flex: 1;
-  }
-
-  &__avatar {
-    height: rem(85);
-    width: rem(85);
   }
 
   &__actions {
@@ -31,5 +21,20 @@
     padding-top: rem(16);
     text-align: center;
     width: 100%;
+
+    & > * + * {
+      margin-top: rem(8);
+    }
+  }
+
+  @media (min-width: $breakpoint-medium) {
+    &__actions {
+      display: flex;
+      justify-content: center;
+
+      & > * + * {
+        margin: rem(0 0 0 8);
+      }
+    }
   }
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Button, List, ListItem, Link } from '@atomikui/core';
+import { Button } from '@atomikui/core';
 import ConfirmationOverlay from '../ConfirmationOverlay';
 import UserAvatar from '../UserAvatar';
 import EmailLink from '../EmailLink';
@@ -34,33 +34,35 @@ const UserCard = ({
         <br />
         <span className="text-size-24">{fullName}?</span>
       </ConfirmationOverlay>
-      <UserAvatar className="user-card__avatar" src={avatar} alt={fullName} />
-      <div className="user-card__name">{fullName}</div>
+      <UserAvatar src={avatar} alt={fullName} />
+      <div className="text-size-24 text-weight-medium">{fullName}</div>
       <div className="user-card__info">
         <EmailLink>{email}</EmailLink>
       </div>
-      <List type="horizontal" className="user-card__actions">
-        <ListItem>
+      <ul className="user-card__actions">
+        <li>
           <Button
             theme="blue"
             shape="pill"
             size="md"
             onClick={() => onUpdate()}
+            block
           >
             edit
           </Button>
-        </ListItem>
-        <ListItem>
+        </li>
+        <li>
           <Button
             theme="blue-gray"
             shape="pill"
             size="md"
             onClick={() => setShowCancelConfirmation(true)}
+            block
           >
             delete
           </Button>
-        </ListItem>
-      </List>
+        </li>
+      </ul>
     </div>
   );
 };

@@ -4,9 +4,9 @@ import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { Avatar } from '@atomikui/core';
 
-const UserAvatar = ({ className, src, alt, fallbackColor }) =>
+const UserAvatar = ({ src, alt, fallbackColor }) =>
   src ? (
-    <Avatar className={className} src={src} alt={alt} />
+    <Avatar className="user-avatar" src={src} alt={alt} />
   ) : (
     <Icon
       style={{ height: 85, width: 85 }}
@@ -16,14 +16,12 @@ const UserAvatar = ({ className, src, alt, fallbackColor }) =>
   );
 
 UserAvatar.propTypes = {
-  className: PropTypes.string,
   src: PropTypes.string,
   alt: PropTypes.string,
   fallbackColor: PropTypes.string,
 };
 
 UserAvatar.defaultProps = {
-  className: '',
   src: null,
   alt: '',
   fallbackColor: '#222',
