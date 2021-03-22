@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { Button, List, ListItem, Link, Avatar } from '@atomikui/core';
+import { Button, List, ListItem, Link } from '@atomikui/core';
 import ConfirmationOverlay from '../ConfirmationOverlay';
+import UserAvatar from '../UserAvatar';
 
 const setFullName = (firstName, lastName) => `${firstName} ${lastName}`;
 
@@ -34,15 +33,7 @@ const UserCard = ({
         <br />
         <span className="text-size-24">{fullName}?</span>
       </ConfirmationOverlay>
-      {avatar ? (
-        <Avatar className="user-card__avatar" src={avatar} alt={fullName} />
-      ) : (
-        <Icon
-          style={{ height: 85, width: 85 }}
-          icon={faUserCircle}
-          color="#222"
-        />
-      )}
+      <UserAvatar className="user-card__avatar" src={avatar} alt={fullName} />
       <div className="user-card__name">{fullName}</div>
       <div className="user-card__info">
         <Link href={`mailto:${email}`}>{email}</Link>
