@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import emailPropType from 'email-prop-type';
 import { Link } from '@atomikui/core';
 
 const EmailLink = ({ children }) => (
@@ -7,7 +7,7 @@ const EmailLink = ({ children }) => (
 );
 
 EmailLink.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: emailPropType.isRequired,
 };
 
 export default EmailLink;
