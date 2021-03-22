@@ -36,7 +36,7 @@ const UserCard = ({
         <span className="text-size-24">{fullName}?</span>
       </ConfirmationOverlay>
       <UserAvatar src={avatar} alt={fullName} />
-      <div className="text-size-24 text-weight-medium">{fullName}</div>
+      <div className="user-card__name">{fullName}</div>
       <div className="user-card__info">
         <EmailLink>{email}</EmailLink>
       </div>

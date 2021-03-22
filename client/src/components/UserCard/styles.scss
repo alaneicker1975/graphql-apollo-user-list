@@ -11,6 +11,11 @@
   overflow: hidden;
   padding: rem(16);
 
+  &__name {
+    font-size: rem(26);
+    font-weight: $font-medium;
+  }
+
   &__info {
     flex: 1;
   }
