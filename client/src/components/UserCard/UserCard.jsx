@@ -4,6 +4,7 @@ import { Button } from '@atomikui/core';
 import ConfirmationOverlay from '../ConfirmationOverlay';
 import UserAvatar from '../UserAvatar';
 import EmailLink from '../EmailLink';
+import ActionList from '../ActionList';
 
 const setFullName = (firstName, lastName) => `${firstName} ${lastName}`;
 
@@ -39,8 +40,8 @@ const UserCard = ({
       <div className="user-card__info">
         <EmailLink>{email}</EmailLink>
       </div>
-      <ul className="user-card__actions">
-        <li>
+      <div className="user-card__actions">
+        <ActionList>
           <Button
             theme="blue"
             shape="pill"
@@ -50,8 +51,6 @@ const UserCard = ({
           >
             edit
           </Button>
-        </li>
-        <li>
           <Button
             theme="blue-gray"
             shape="pill"
@@ -61,8 +60,8 @@ const UserCard = ({
           >
             delete
           </Button>
-        </li>
-      </ul>
+        </ActionList>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,14 @@
+.action-list {
+  & > * + * {
+    margin-top: rem(8);
+  }
+
+  @media (min-width: $breakpoint-medium) {
+    display: flex;
+    justify-content: center;
+
+    & > * + * {
+      margin: rem(0 0 0 8);
+    }
+  }
+}
