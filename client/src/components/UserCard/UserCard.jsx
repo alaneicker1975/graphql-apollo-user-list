@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, List, ListItem, Link } from '@atomikui/core';
 import ConfirmationOverlay from '../ConfirmationOverlay';
 import UserAvatar from '../UserAvatar';
+import EmailLink from '../EmailLink';
 
 const setFullName = (firstName, lastName) => `${firstName} ${lastName}`;
 
@@ -36,7 +37,7 @@ const UserCard = ({
       <UserAvatar className="user-card__avatar" src={avatar} alt={fullName} />
       <div className="user-card__name">{fullName}</div>
       <div className="user-card__info">
-        <Link href={`mailto:${email}`}>{email}</Link>
+        <EmailLink>{email}</EmailLink>
       </div>
       <List type="horizontal" className="user-card__actions">
         <ListItem>
